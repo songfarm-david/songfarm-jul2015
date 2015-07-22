@@ -14,10 +14,11 @@
     </head>
     <body>
       <!-- Logo and Navigation -->
-      <header id="header" role="banner">
-        <h1 id="top">Songfarm</h1><!-- this h1 will be hidden from viewers // it will always act as an anchored link -->
-        <nav role="navigation">
-          <h2>Navigation</h2><!-- hide this header -->
+      <header id="header">
+        <h1 id="top" class="hide">Songfarm</h1><!-- this h1 will be hidden from viewers // it will always act as an anchored link -->
+        <nav>
+          <h2 class="hide">Navigation</h2><!-- hide this header -->
+          <div class="logo"></div>
           <ul>
             <li><!-- remember to use a class="active" on links that are currently active -->
               <a href="#about" title="About Songfarm" rel="bookmark">About</a>
@@ -36,11 +37,11 @@
       </header>
 
       <!-- Main Content -->
-      <main role="main">
+      <main>
 
         <!-- Banner Slide -->
-        <article role="article">
-          <h2>Highlights</h2><!-- hide this, too -->
+        <article id="banner">
+          <h2 class="hide">Highlights</h2><!-- hide this, too -->
           <section>
             <h3>Nurturing Talent, Harvesting Success</h3>
             <p>
@@ -98,7 +99,7 @@
         </article>
 
         <!-- About -->
-        <article id="about" role="article">
+        <article id="about" >
           <h2>About</h2>
           <p>
             Songfarm is a video-based exposure and live-collaboration platform for singer/songwriters. It is also a talent and music discovery site for Industry Professionals and Fans.
@@ -114,29 +115,32 @@
         </article>
 
         <!-- Features -->
-        <article id="features" role="article">
+        <article id="features" >
           <h2>Features</h2>
+          <div id="divide-one"></div>
+          <section id="first-section">
+            <div class="feature">
+              <h3>Songbook</h3>
+              <p>
+                Write some stuff in here. And another. This is fucked.
+              </p>
+            </div>
 
-          <div class="feature">
-            <h3>Songbook</h3>
-            <p>
-              Write some stuff in here. And another. This is fucked.
-            </p>
-          </div>
+            <div class="feature">
+              <h3>Tip Jar</h3>
+              <p>
 
-          <div class="feature">
-            <h3>Tip Jar</h3>
-            <p>
+              </p>
+            </div>
 
-            </p>
-          </div>
+            <div class="feature">
+              <h3>Analytics</h3>
+              <p>
 
-          <div class="feature">
-            <h3>Analytics</h3>
-            <p>
+              </p>
+            </div>
+          </section>
 
-            </p>
-          </div>
 
           <div class="feature">
             <h3>Live Collaboration</h3>
@@ -183,21 +187,24 @@
         </article>
 
         <!-- Contact Us -->
-        <article id="contactUs" role="article">
+        <div class="rounded-contact"></div>
+        <article id="contactUs" >
           <h2>Contact Us</h2>
+
+          <!-- Footer -->
+          <footer>
+            <p>
+              <small>&copy; 2015 Songfarm. All rights reserved.</small>
+            </p>
+            <p>
+              <a href="#top" title="Jump back to the top of the page">Back to Top</a><!-- Temporary link // will be replaced by a Javascript button -->
+            </p>
+            <!-- Footer will eventually require other items such as terms of use and/or legal -->
+          </footer>
         </article>
 
       </main>
 
-      <!-- Footer -->
-      <footer role="contentinfo">
-        <p>
-          <small>&copy; 2015 Songfarm. All rights reserved.</small>
-        </p>
-        <p>
-          <a href="#top" title="Jump back to the top of the page">Back to Top</a><!-- Temporary link // will be replaced by a Javascript button -->
-        </p>
-        <!-- Footer will eventually require other items such as terms of use and/or legal -->
-      </footer>
+
     </body>
 </html>
