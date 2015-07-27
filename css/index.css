@@ -66,9 +66,16 @@ body{
 	line-height: 1;
 }
 
-a	{ text-decoration: none; border: none; color: #5D5161; }
 img	{ outline: 0; border: none; }
 .hide	{ display: none; }
+
+ul {list-style: none; }
+a	{ text-decoration: none; border: none; color: #5D5161; }
+a:hover{ color: #7CC919; }
+a:hover::before{
+  content:url('../images/arrows_and_lines/navActive_arrow.png');
+  position:absolute; left:-15px; top:3px;
+}
 
 /*  Header  */
 header{
@@ -77,13 +84,21 @@ header{
   font-family: 'museo_sans300';
   border: 1px solid #fff;
 }
-header nav{ font-family: 'museo_sans300'; font-size: 1.2em;}
-header ul{ list-style: none; line-height: 76px; /*border: 1px dotted blue;*/ }
+header nav{ font-family: 'museo_sans300'; font-size: 1.2em; }
+header ul{ line-height: 76px; }
 header ul li{
 	display: inline-block;
 	text-transform: uppercase;
+  position: relative;
 }
 header ul li a{ padding: .3em .1em; }
+
+header div.register.medium{
+  height:70px; width: 294px;
+  background: url('../images/buttons/register_m.png') no-repeat;
+  position:absolute; z-index:500;
+  bottom:-40px; right: 200px;
+}
 
 /* Sections Global  */
 article#about, article#features, article#contactUs{
@@ -121,7 +136,7 @@ article#about div.register{
   background: url('../images/buttons/register_l.png') no-repeat;
   padding:0;
 }
-article#about div.register:hover{
+div.register:hover{
   cursor: pointer;
 }
 .divide-one{
@@ -163,7 +178,31 @@ footer{
 	width:100%;
 	background-color: #343238;
 	text-align: center;
+  /*position: relative;
+  padding-top: 36px;*/
+  font-family: 'museo_sans300';
+  color: #9A999C;
 }
+footer p{ line-height: 120px; }
+footer p.back-to-top{
+  position: absolute;
+  bottom:16px; right:24px;
+  z-index:3;
+  line-height: 0;
+}
+footer p.back-to-top a{ color: #9A999C; }
+footer p.back-to-top a:hover:before{
+  content: '';
+}
+footer div.share-links{
+  position: absolute; z-index: 10;
+  top:37px; left:18.2%;
+  height:40px; width: 200px;
+  text-align: left;
+}
+footer div.share-links ul{ margin:0; padding:0; }
+footer div.share-links ul li{ display: inline-block; margin: 0 6% 0 2%; }
+footer div.share-links ul li img{ height:40px; width:40px; }
 
 /*  Banner Slides styles  */
 .slide-container .slide-data{ display:none; }
@@ -281,13 +320,11 @@ input, textarea {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     padding:.75em; padding-left: 1.5em;
 }
 input:focus, textarea:focus {
-    /* To give a little highlight on active elements */
     border-color: #000;
-    border-radius: 30px; /* how to get this to work */
     box-shadow: 0 0 0 2pt #99EE20;
     outline: none;
 }
