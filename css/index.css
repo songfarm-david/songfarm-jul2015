@@ -54,6 +54,7 @@ html, body, div, p, ul, h1, h2, h3, img, strong, em, small, li, span, time, sect
 	vertical-align: baseline;
 	font: inherit;
 	background: transparent;
+  font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
 }
 header, nav, main, section, article, footer, figure, figcaption{
 	display: block;
@@ -64,6 +65,7 @@ body{
   max-width:1600px; width:100%;
 	margin:0 auto;
 	line-height: 1;
+  height:100%;
 }
 
 img	{ outline: 0; border: none; }
@@ -77,14 +79,16 @@ a:hover::before{
   position:absolute; left:-15px; top:3px;
 }
 
+
+
 /*  Header  */
 header{
 	width:100%;
 	position: relative;
-  font-family: 'museo_sans300';
+  font-family: 'museo_sans300', Arial, Helvetica, sans-serif;
   border: 1px solid #fff;
 }
-header nav{ font-family: 'museo_sans300'; font-size: 1.2em; }
+header nav{ font-size: 1.2em; }
 header ul{ line-height: 76px; }
 header ul li{
 	display: inline-block;
@@ -99,10 +103,14 @@ header div.register.medium{
   position:absolute; z-index:500;
   bottom:-40px; right: 200px;
 }
+/*div.register:hover:before{
+  content: url('../images/songfarm_logo.png'); // swap out for 'hover state' image
+  width:30px;
+}*/
 
 /* Sections Global  */
 article#about, article#features, article#contactUs{
-  font-family: 'museo_sans100';
+  font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
 }
 article#about{
   background-color: #B8B8B8;
@@ -135,9 +143,11 @@ article#about div.register{
   width:377px; height:89px;
   background: url('../images/buttons/register_l.png') no-repeat;
   padding:0;
+  /*opacity:0.5;*/
 }
 div.register:hover{
   cursor: pointer;
+  background
 }
 .divide-one{
 	height: 63px; width: 100%;
@@ -180,7 +190,7 @@ footer{
 	text-align: center;
   /*position: relative;
   padding-top: 36px;*/
-  font-family: 'museo_sans300';
+  font-family: 'museo_sans300', Arial, Helvetica, sans-serif;
   color: #9A999C;
 }
 footer p{ line-height: 120px; }
@@ -241,16 +251,16 @@ footer div.share-links ul li img{ height:40px; width:40px; }
 }
 .slide-container .slide-panel .panel-caption h3 {
   margin: -47px 0px 47px 0px;
-  font-family: 'museo_sans100';
+  font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
   font-size:4em;
   font-weight: normal;
 }
 .slide-container .slide-panel .panel-caption h3 span.bold{
-  font-family: 'museo_sans900';
+  font-family: 'museo_sans900', Arial, Helvetica, sans-serif;
   /*font-size:2.4em;*/
 }
 .slide-container .slide-panel .panel-caption p{
-  font-family: 'museo_sans700';
+  font-family: 'museo_sans700', Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-size: 1.3em;
   text-transform: none;
@@ -303,18 +313,18 @@ footer div.share-links ul li img{ height:40px; width:40px; }
   width:100%; height: inherit; position: absolute; top:0; left:0;
 }
 
-/* Form Styles  */
-form {
+/*Contact Form*/
+form#contact-form {
     margin: 0 0 0 18.2%;
     width: 32%;
 }
 
-form div{ margin-top: 1em; }
-label { display: none; }
+form#contact-form div{ margin-top: 1em; }
+form#contact-form label { display: none; }
 
-input, textarea {
-    font-family: 'museo_sans100';  font-size: 1.2em;
-
+form#contact-form input, textarea {
+    font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -323,20 +333,46 @@ input, textarea {
     border-radius: 50px;
     padding:.75em; padding-left: 1.5em;
 }
-input:focus, textarea:focus {
+form#contact-form input:focus, textarea:focus {
     border-color: #000;
     box-shadow: 0 0 0 2pt #99EE20;
     outline: none;
 }
-textarea {
+form#contact-form textarea {
     height: 4.5em;
     resize: vertical;
 }
-div#submit_button{
+form#contact-form div#submit_button{
   height: 62px; width: 334px;
   background: url('../images/buttons/send_message.png') no-repeat;
   margin-top: 30px;
 }
+
+/*Register Form*/
+#overlay{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width:100%;
+  height:100%;
+  text-align:center;
+  z-index: 1000;
+  background-color: rgba(0,0,0,.5);
+}
+form#register-form {
+  position: fixed; z-index: 1001;
+  top:0; left:0; bottom:0; right:0;
+  width:25%; height:500px;
+  margin: auto;
+  background-color: #fff;
+  border:1px solid #000;
+  padding:15px;
+  text-align:center;
+  font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
+}
+#overlay form#register-form label { display: visible;}
+
+/* form styles go here */
 
 /*	Mobile Styles	*/
 @media only screen and (max-width:480px){

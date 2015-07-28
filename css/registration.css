@@ -1,0 +1,39 @@
+#register-form{
+	border:1px solid green;
+	width:25%;
+	text-align: center;
+	font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
+}
+#register-form div{
+	border: 1px dotted blue;
+	margin:16px;
+}
+#register-form div.user{
+	height:100px; width:100px;
+	border-radius: 50px;
+	display: inline-block;
+	line-height: 98px;
+	margin:0 0.25em 16px;
+}
+#register-form div.user:hover{
+	cursor: pointer;
+	background-color: #eee;
+}
+#register-form div + div input:not([type=submit]){
+	border: 1px dotted red;
+	display: block;
+	margin: 1.5em auto;
+	padding:0.5em; padding-left: 1em;
+	width:55%;
+	border-radius: 16px;
+}
+#register-form div + div input:not([type=submit]):focus{
+	box-shadow: 0 0 0 2pt #99EE20;
+	outline: none;
+}
+#register-form div + div input[type=submit]{
+	cursor: pointer;
+	border-radius: 16px;
+	margin:8px 0 16px;
+	padding:0.5em 1em;
+}

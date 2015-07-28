@@ -9,10 +9,13 @@
         <link href="css/index.css" rel="stylesheet">
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/slide-gallery.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="js/form_register.js"></script>
         <!--[if lt IE 9]>
           <script src="js/html5-shiv/html5shiv.min.js"></script>
           <script src="js/html5-shiv/html5shiv-printshiv.min.js"></script>
           <script src="js/respond.js" type="text/javascript"></script>
+          <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
         <![end if]-->
         <script>
   			// Picture element HTML5 shiv
@@ -132,21 +135,21 @@
               <img src="images/icons/songbook_icon.png">
               <h3>Songbook</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                All your finished songs, working drafts, lyrics, covers and collaborations tracked and organized in one easy place.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/farmedOut_icon.png">
               <h3>Get Farmed Out</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Part of what Songfarm is all about is helping putting your music in the hands of Industry decision makers. When you do you'll recieve the "Farmed Out" badge on your profile in recognition of that.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/tipJar_icon.png">
               <h3>Tip Jar</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Wire the Tip Jar up to your bank account and receive instant deposits everytime a supporter donates to the cause.
               </p>
             </section>
 
@@ -159,7 +162,7 @@
               <img src="images/icons/collab_icon.png">
               <h3>Live Collaboration</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Participate in a <strong><a href="songcircle.html" title="Participate in a Songcircle">Songcircle</a></strong> today!
+                Collaborate live in a virtual Songwriter's Circle and receive real-time feedback from other songwriters to help take your music to the next level. Join a live <strong><a href="songcircle.html" title="Participate in a Songcircle">Songcircle</a></strong> today!
                 <!-- the strong tag represents a strong importance and is used to emphasize the Songcircle -->
               </p>
             </section>
@@ -167,14 +170,14 @@
               <img src="images/icons/campfire_icon.png">
               <h3>Campfire Style Performance</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Songfarm's video performances capture authentic music talent. One guitar. One voice. As if you were listening around a campfire.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/analytics_icon.png">
               <h3>Analytics</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Discover your most popular songs, who's listening, and where in the world your biggest fans reside so you can make smarter decisions with your career.
               </p>
             </section>
             <div class="divide-three"></div>
@@ -185,22 +188,21 @@
               <img src="images/icons/fairBus_icon.png">
               <h3>Fair Business Practice</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Receive 100% of the money you make. Whether through live performances, downloads, donations or Industry deals, Songfarm Artists always get a fair shake.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/liveConcert_icon.png">
               <h3>Live Concerts</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
+                Host a live concert to all your biggest fans from the comfort of your home and earn performance revenue without ever setting foot on a tour bus.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/community_icon.png">
               <h3>The Songfarm Community</h3>
               <p>
-                This is filler text. It is used to define a placeholder for descriptions for each Icon in the list of icons. The second paragraph wraps everything together and will tie up the meaning of the icon nicely. Just like that. Alrighty-then.
-              </p>
+                Songfarm is home to aspiring singer/songwriters, music industry professionals and fans. You never know who you'll meet when you become part of the Songfarm Community.              </p>
             </section>
             <div class="divide-four"></div>
           </div><!-- end of section third -->
@@ -241,7 +243,7 @@
             </p>
 
             Add a Privacy Policy
-            
+
             -->
             <div class="share-links">
               <ul>
@@ -260,6 +262,48 @@
         </article>
 
       </main>
+
+      <!-- registration form -->
+      <div id="overlay" class="hide"></div>
+        <form id="register-form" action="includes/register.php" method="post" class="hide">
+          <div>
+            <p class="p">
+              Which type of user are you?
+            </p>
+            <label>
+              <input type="radio" name="user_type[]" value="1">Artist
+              <input type="radio" name="user_type[]" value="2">Industry
+              <input type="radio" name="user_type[]" value="3">Fan
+            </label>
+          </div>
+
+          <div id="second" class="hide">
+            <label for="username">Name:
+              <input type="text" id="username" name="user_name" minlength="2" value="" required>
+            </label>
+            <!-- only letters and whitespace .. no numbers -->
+            <p>
+              What is your email address?
+            </p>
+            <label for="useremail">Email:
+              <input type="email" id="useremail" name="user_email" value="" required>
+            </label>
+            <br>
+            <label for="submitForm">
+              <input type="submit" id="submitForm">
+            </label>
+          </div>
+
+          <!-- form result message -->
+          <div id="message" class="hide">
+            <p>
+
+            </p>
+          </div>
+        </form>
+
+
+      <!-- end of: registration form -->
 
 
     </body>
