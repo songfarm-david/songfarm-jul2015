@@ -436,15 +436,17 @@ span.error{
 	padding:0.5em 1em;
 	display: block;
 	background-color: #99EE20;
-	color:#fff;
+	color: #2A5C03;
 	border:none; outline:none;
 	width:65%;
 	font-size: 1.2em;
 }
-#register-form div + div input[type=submit]:hover{
+#register-form div + div input[type=submit]:hover,
+#register-form div + div input[type=submit]:focus{
 	background-color: #3FA8F4;
 	color:#fff;
-	transition-duration: .250s;
+	transition-duration: .150s;
+  box-shadow: 0 0 1pt 2pt #78C6FF;
 }
 #register-form div#message p{
 	margin-top:6em;

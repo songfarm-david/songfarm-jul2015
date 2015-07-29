@@ -3,14 +3,18 @@ $(document).ready(function(){
 	// remove 'hide' when user clicks a 'Register Today' button
 	$(".register").on('click',function(){ // on link click
 		// show overlay and registration form part 1
-		$('#overlay, #register-form').removeClass('hide');
+		$('div#overlay, form#register-form').fadeIn('fast').removeClass('hide');
 		// if user clicks outside of form: hide overlay, form
 		// and reset form
 		$('#overlay').on('click', function(){
-			$(this).addClass('hide');
-			$('#register-form').addClass('hide');
+			resetForm($('#register-form'));
+
+		 	$('form#register-form').css('display','none');
+			$('#register-form div').removeClass('hide');
+			$('#second').addClass('hide');
+			$(this).css('display','none');
 			// somehow reset all the form elements
-			document.location.reload(false);
+			// document.location.reload(false);
 			// instead of the above, SIMULATE a reload by
 			// resetting elements and going back to initial state
 		});
@@ -68,7 +72,17 @@ $(document).ready(function(){
 			// console.log('the form should have been sent');
 			$("#register-form div + div").addClass('hide');
 			$("#register-form #message").removeClass('hide');
+			setTimeout(function(){
+				$('#overlay, form#register-form').fadeOut('slow');
+			 	$(".register").off();
+			},1500);
 		}
 	});// end of validate
 
+	function resetForm($form) {
+    // $form.find('input:hidden, input:text').val('');
+		$('input[type=hidden], input[type=text], input[type=email]').val('');
+		$('span#useremail-error, span#username-error').html('');
+
+}
 })//end of document ready
