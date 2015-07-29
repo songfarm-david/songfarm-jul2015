@@ -135,14 +135,14 @@
               <img src="images/icons/songbook_icon.png">
               <h3>Songbook</h3>
               <p>
-                All your finished songs, working drafts, lyrics, covers and collaborations tracked and organized in one easy place.
+                Quickly and easily track, sort and organize all your finished and rough songs, lyrics, covers and co-writes so you can focus on your writing.
               </p>
             </section>
             <section class="feature">
               <img src="images/icons/farmedOut_icon.png">
               <h3>Get Farmed Out</h3>
               <p>
-                Part of what Songfarm is all about is helping putting your music in the hands of Industry decision makers. When you do you'll recieve the "Farmed Out" badge on your profile in recognition of that.
+                Being an artist at Songfarm means being seen and heard - and that by includes Industry decision makers. When you get 'Farmed Out' we'll make sure the rest of the community hears about it.
               </p>
             </section>
             <section class="feature">
@@ -265,44 +265,25 @@
 
       <!-- registration form -->
       <div id="overlay" class="hide"></div>
-        <form id="register-form" action="includes/register.php" method="post" class="hide">
+        <form id="register-form" action="#" method="post" class="hide">
           <div>
-            <p class="p">
-              Which type of user are you?
-            </p>
-            <label>
-              <input type="radio" name="user_type[]" value="1">Artist
-              <input type="radio" name="user_type[]" value="2">Industry
-              <input type="radio" name="user_type[]" value="3">Fan
-            </label>
+            <p>Please Select Your User Type:</p>
+      			<div class="user" value="1">Artist</div>
+      			<div class="user" value="2">Industry</div>
+      			<div class="user" value="3">Fan</div>
+      			<input type="hidden" id="user_type" name="user_type" value="">
           </div>
-
           <div id="second" class="hide">
-            <label for="username">Name:
-              <input type="text" id="username" name="user_name" minlength="2" value="" required>
-            </label>
-            <!-- only letters and whitespace .. no numbers -->
-            <p>
-              What is your email address?
-            </p>
-            <label for="useremail">Email:
-              <input type="email" id="useremail" name="user_email" value="" required>
-            </label>
-            <br>
-            <label for="submitForm">
-              <input type="submit" id="submitForm">
-            </label>
+            <p>Please Enter Your Name And Email</p>
+      			<input type="text" id="username" name="user_name" data-msg-required="The name field is required" minlength="2" placeholder="Your Name" required>
+      			<input type="email" id="useremail" name="user_email" data-msg-required="The email field is required" placeholder="Your Email" required>
+      			<input type="submit" id="submitForm" value="Register Me!">
           </div>
-
           <!-- form result message -->
           <div id="message" class="hide">
-            <p>
-
-            </p>
+            <p></p>
           </div>
         </form>
-
-
       <!-- end of: registration form -->
 
 

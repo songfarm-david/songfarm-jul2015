@@ -3,7 +3,7 @@
 
 if ($_POST){
 	// get the value of user_type
-	$userType = implode($_POST["user_type"]);
+	$userType = $_POST["user_type"];
 
 	// get and sanitize user name
 	$userName = filter_var($_POST["user_name"],FILTER_SANITIZE_STRING);

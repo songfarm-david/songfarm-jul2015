@@ -5,6 +5,8 @@
 	<title>Register Form | Test</title>
 	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../js/form_register.js"></script>
+
 	<link href="../css/registration.css" rel="stylesheet">
 </head>
 <body>
@@ -63,21 +65,17 @@
 	// })//end of document ready
 	</script>
 
+	<span class="register"><a href="#">Register Today</a></span>
+
+	<div id="overlay" class="hide"></div>
+
 	<!-- Test form for User Registration -->
 	<form id="register-form" action="../includes/register.php" method="post" class="hide">
 		<div>
-			<p>
-				Please Select Your User Type:
-			</p>
-			<div class="user">
-				Artist
-			</div>
-			<div class="user">
-				Industry
-			</div>
-			<div class="user">
-				Fan
-			</div>
+			<p>Please Select Your User Type:</p>
+			<div class="user" value="1">Artist</div>
+			<div class="user" value="2">Industry</div>
+			<div class="user" value="3">Fan</div>
 			<input type="hidden" id="user_type" name="user_type" value="">
 			<!-- <label>
 				<input type="radio" name="user_type[]" value="1">Artist
@@ -87,9 +85,10 @@
 		</div>
 
 		<div id="second" class="hide">
-			<input type="text" id="username" name="user_name" minlength="2" placeholder="Your Name" required>
+			<p>Please Enter Your Name And Email</p>
+			<input type="text" id="username" name="user_name" data-msg-required="The name field is required" minlength="2" placeholder="Your Name" required>
 
-			<input type="email" id="useremail" name="user_email" placeholder="Your Email" required>
+			<input type="email" id="useremail" name="user_email" data-msg-required="The email field is required" placeholder="Your Email" required>
 
 			<input type="submit" id="submitForm" value="Register Me!">
 
