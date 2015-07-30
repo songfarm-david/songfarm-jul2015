@@ -197,7 +197,7 @@ footer{
   color: #9A999C;
 }
 footer p{ line-height: 120px; }
-footer p.back-to-top{
+/*footer p.back-to-top{
   position: absolute;
   bottom:16px; right:24px;
   z-index:3;
@@ -206,7 +206,7 @@ footer p.back-to-top{
 footer p.back-to-top a{ color: #9A999C; }
 footer p.back-to-top a:hover:before{
   content: '';
-}
+}*/
 footer div.share-links{
   position: absolute; z-index: 10;
   top:37px; left:18.2%;
@@ -217,6 +217,30 @@ footer div.share-links ul{ margin:0; padding:0; }
 footer div.share-links ul li{ display: inline-block; margin: 0 6% 0 2%; }
 footer div.share-links ul li img{ height:40px; width:40px; }
 
+div#back-to-top{
+  background: url('../images/arrows_and_lines/arrowUp.png');
+  height:64px; width:64px;
+  opacity:0.2;
+  position: fixed; z-index:500;
+  right:2.5%; top: 6%;
+  display: none;
+  transition-duration: .250s;
+}
+div#back-to-top:hover{
+  opacity: .5;
+  transition-duration: .250s;
+}
+a:hover div#back-to-top{
+  color: #000;
+}
+div#back-to-top:after{
+  content: 'Top';
+  font-size:1.1em;
+  font-weight: bold;
+  position: relative;
+  bottom:-68px; left: 15px;
+  opacity: 1;
+}
 /*  Banner Slides styles  */
 .slide-container .slide-data{ display:none; }
 .slide-container .slide-stage-large{

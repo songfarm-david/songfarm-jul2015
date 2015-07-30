@@ -17,30 +17,7 @@
     </head>
     <body id="top">
       <!-- Logo and Navigation -->
-      <header id="header" >
-        <h1 class="hide">Songfarm</h1>
-        <!-- h1 hidden // anchored link to top -->
-        <nav>
-          <h2 class="hide">Navigation</h2>
-          <!-- nav h2 is hidden -->
-          <div class="logo"></div>
-          <ul>
-            <li><!-- remember to use a class="active" on links that are currently active -->
-              <a href="#about" title="About Songfarm" rel="bookmark">About</a>
-            </li>
-            <li>
-              <a href="#features" title="Songfarm features" rel="bookmark">Features</a>
-            </li>
-            <li>
-              <a href="songcircle.html" title="Songcircle - A virtual songwriter's circle"><strong>Songcircle</strong></a><!-- Emphasize Songcircle -->
-            </li>
-            <li>
-              <a href="#contactUs" title="Contact Us" rel="bookmark">Contact Us</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="register medium"></div>
-      </header>
+      <?php include 'includes/header.php' ?>
 
       <!-- Main Content -->
       <main>
@@ -289,8 +266,9 @@
       <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
       <script type="text/javascript" src="js/slide-gallery.js"></script>
       <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-      <script type="text/javascript" src="js/register_form.js"></script>
-      <script type="text/javascript" src="js/contact_form.js"></script>
+      <!-- // <script type="text/javascript" src="js/register_form.js"></script>
+      // <script type="text/javascript" src="js/contact_form.js"></script> -->
+      <script type="text/javascript" src="js/forms.js"></script>
       <script>
       // Picture element HTML5 shiv
       document.createElement( "picture" );
@@ -298,6 +276,39 @@
       <script src="js/picturefill.min.js" async></script>
       <!-- banner preload script -->
       <script>
+      //smooth scrolling function
+      $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+              $('html,body').animate({
+                scrollTop: target.offset().top
+              }, 1000);
+              return false;
+            }
+          }
+        });
+      });
+
+      // scroll function to make back to top button appear
+      $(window).on('scroll', function() {
+          var y_scroll_pos = window.pageYOffset;
+          var scroll_pos_test = 600;             // set to whatever you want it to be
+
+          if(y_scroll_pos > scroll_pos_test) {
+            // $("#back-to-top").css('display','block');
+            $("#back-to-top").fadeIn();
+
+          }else{
+            // $("#back-to-top").css('display','none');
+            $("#back-to-top").fadeOut();
+
+          }
+      });
+
+      //image preloader
       function preloader() {
       	if (document.getElementById) {
       		// document.getElementById("slide-1").style.background = "url(images/banner/slide_1.jpg) no-repeat -9999px -9999px";
@@ -322,6 +333,7 @@
       		}
       	}
       }
+
       addLoadEvent(preloader);
       // function for hover image pre-loading.. unfinished
       // $.preloadImages = function() {
@@ -332,5 +344,7 @@
       //
       // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
       </script>
+
+      <a href="#top"><div id="back-to-top"></div></a>
     </body>
 </html>
