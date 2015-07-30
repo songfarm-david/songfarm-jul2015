@@ -30,6 +30,11 @@ span.error{
 	font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
 	background:#fff;
 }
+#register-form img{
+	position: relative;
+	z-index: 1002;
+	top:15px; right:15px;
+}
 #register-form div{
 	margin:24px 16px;
 }

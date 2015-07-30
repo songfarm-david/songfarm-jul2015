@@ -321,7 +321,14 @@ form#contact-form {
     margin: 0 0 0 18.2%;
     width: 32%;
 }
-
+#contact-form span.error{
+	position:absolute;
+	width:65%;
+	font-size: 1em;
+  margin: 20px 0 0 8px;
+	color:#9C4646;
+  display: inline !important;
+}
 form#contact-form div{ margin-top: 1em; }
 form#contact-form label { display: none; }
 
@@ -345,28 +352,44 @@ form#contact-form textarea {
     height: 4.5em;
     resize: vertical;
 }
-form#contact-form div#submit_button{
+form#contact-form button#submit_button{
   height: 62px; width: 334px;
+  border:none; outline:none;
   background: url('../images/buttons/send_message.png') no-repeat;
   margin-top: 30px;
 }
-form#contact-form div#submit_button:hover:before{
+form#contact-form button#submit_button:hover:before{
   content: url('../images/buttons/send_message_hover.png');
   position: relative;
-  top:-1px; left:-1px;
+  top:-1px; left:-5px;
   cursor: pointer;
 }
-
+div#thank-you_message{
+  margin: 0 auto;
+  height:300px;
+  line-height:300px;
+  font-size:1.5em;
+  width:50%;
+}
 
 /*Register Form*/
 .hide{ display:none; }
-span.error{
+#register-form span.error{
 	position:absolute;
 	left:65px;
 	width:65%;
 	font-size: 0.8em;
 	color:red;
 }
+#register-form img{
+	position: absolute;
+	z-index: 1002;
+	top:5px; right:5px;
+  cursor: pointer;
+  opacity: 0.2;
+  transition-duration: .250s;
+}
+#register-form img:hover{ opacity: .5; transition-duration: .250s; }
 #overlay{
 		position:fixed;
 		z-index: 1000;
@@ -397,6 +420,7 @@ span.error{
 }
 #register-form div > p{
 	margin:60px auto 50px;
+  font-size:1.1em;
 }
 #register-form div + div > p{
 	margin-bottom: 16px;
@@ -409,6 +433,7 @@ span.error{
 	margin:0 0.4em 36px;
 	background-color: #99EE20;
 	font-size:1.1em;
+  transition-duration: .250s;
 }
 #register-form div.user:hover{
 	cursor: pointer;
@@ -440,6 +465,7 @@ span.error{
 	border:none; outline:none;
 	width:65%;
 	font-size: 1.2em;
+  transition-duration: .150s;
 }
 #register-form div + div input[type=submit]:hover,
 #register-form div + div input[type=submit]:focus{
@@ -449,7 +475,8 @@ span.error{
   box-shadow: 0 0 1pt 2pt #78C6FF;
 }
 #register-form div#message p{
-	margin-top:6em;
+  line-height: 310px;
+  margin:0; padding:0;
 }
 
 
