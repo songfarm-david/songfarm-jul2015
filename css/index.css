@@ -603,3 +603,14 @@ div#thank-you_message{
 	}
 
 }
+
+
+#facebook, #twitter, #linkedIn{ /* can add other calls here */
+  opacity: .8;
+  transition-duration: .250s;
+}
+#facebook:hover, #twitter:hover, #linkedIn:hover{
+  transition-duration: .250s;
+  cursor: pointer;
+  opacity: 1;
+}

@@ -3,11 +3,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="description" content="Songfarm grows music talent and cultivates careers for songwriters from the ground up!">
-        <title>Songfarm - A Natural Approach to Great Music Talent</title>
+        <title>Songfarm - Unearthing Raw Music Talent</title>
         <!-- <link rel="shortcut icon" type="image/x-icon" href="images/songfarm_favicon.png" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta property="og:url" content="http://www.songfarm.ca">
+        <meta property="og:title" content="Cultivating Music Talent From The Ground Up">
+        <meta property="og:description" content="Songfarm is a feedback, exposure and live-collaboration platform for aspiring singer/songwriters. Upload your raw videos, receive feedback from the Songfarm Community of Artists, Industry Professionals and Fans and begin growing your career. Register Today!">
+        <meta property="og:image" content="http://www.songfarm.ca/images/singer.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="450">
+
+
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link href="css/index.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+        <script type="text/javascript" src="//platform.linkedin.com/in.js">
+            api_key:   77fxwmu499ca9c
+            authorize: true
+        </script>
         <!--[if lt IE 9]>
           <script src="js/html5-shiv/html5shiv.min.js"></script>
           <script src="js/html5-shiv/html5shiv-printshiv.min.js"></script>
@@ -16,6 +30,45 @@
         <![end if]-->
     </head>
     <body id="top">
+    <script>
+    // link trigger here:
+    window.fbAsyncInit = function() {
+       FB.init({
+         appId      : '984018624954627',
+         xfbml      : true,
+         version    : 'v2.4'
+       });
+     };
+
+     (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    // Twitter
+      window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+        return t;
+      }(document, "script", "twitter-wjs"));
+
+
+    </script>
+
       <!-- Logo and Navigation -->
       <?php include 'includes/header.php' ?>
 
@@ -104,7 +157,7 @@
               <img src="images/icons/songbook_icon.png">
               <h3>Songbook</h3>
               <p>
-                Quickly and easily track, sort and organize all your finished and rough songs, lyrics, covers and co-writes, as well as analytics. All this so you can focus on more important things &ndash; like perfecting your craft.
+                Quickly and easily track, sort and organize all your finished and rough songs, lyrics, covers and co-writes, as well as analytics. All this so you can focus on more important things &ndash; like your music.
               </p>
             </section>
             <section class="feature">
@@ -224,13 +277,13 @@
             <div class="share-links">
               <ul>
                 <li>
-                  <img src="images/icons/social icons/facebook.png">
+                  <img src="images/icons/social icons/facebook.png" id="facebook">
                 </li>
                 <li>
-                  <img src="images/icons/social icons/twitter.png">
+                  <img src="images/icons/social icons/twitter.png" id="twitter">
                 </li>
                 <li>
-                  <img src="images/icons/social icons/linkedIn.png">
+                  <img src="images/icons/social icons/linkedIn.png" id="linkedIn">
                 </li>
               </ul>
             </div>
@@ -263,7 +316,6 @@
         </form>
       <!-- end of: registration form -->
 
-      <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
       <script type="text/javascript" src="js/slide-gallery.js"></script>
       <script type="text/javascript" src="js/jquery.validate.min.js"></script>
       <!-- // <script type="text/javascript" src="js/register_form.js"></script>
@@ -343,6 +395,47 @@
       // }
       //
       // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
+
+      // facebook share trigger event
+      $("div.share-links img#facebook").on('click',function(){
+        FB.ui({
+            method: 'share',
+            href: 'songfarm.ca/',
+        });
+      });
+
+      // twitter share trigger event
+      $("div.share-links img#twitter").on('click',function(){
+        // location.href='https://twitter.com/share';
+        var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = "https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.songfarm.ca&text=Growing%20authentic%20music%20talent%20from%20the%20ground%20up!&hashtags=songfarmdotca",
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+        window.open(url, 'twitter', opts);
+        return false;
+      });
+
+      $("div.share-links img#linkedIn").on('click',function(){
+        // location.href="https://www.linkedin.com/shareArticle?mini=true&url=http://songfarm.ca";
+        var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = "https://www.linkedin.com/shareArticle?mini=true&url=http://songfarm.ca",
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+        window.open(url, 'linkedIn', opts);
+        return false;
+      });
       </script>
 
       <a href="#top"><div id="back-to-top"></div></a>
