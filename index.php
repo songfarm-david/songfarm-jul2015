@@ -30,44 +30,6 @@
         <![end if]-->
     </head>
     <body id="top">
-    <script>
-    // link trigger here:
-    window.fbAsyncInit = function() {
-       FB.init({
-         appId      : '984018624954627',
-         xfbml      : true,
-         version    : 'v2.4'
-       });
-     };
-
-     (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-    // Twitter
-      window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-        return t;
-      }(document, "script", "twitter-wjs"));
-
-
-    </script>
 
       <!-- Logo and Navigation -->
       <?php include 'includes/header.php' ?>
@@ -104,7 +66,7 @@
               <h3>Virtual<br><span class="bold">Songwriter's Circles</span></h3>
               <p>
                 Workshop your newest song in a virtual songwriter's circle and get real-time<br> feedback from other artists.
-                Register for one today!
+                <strong><a href="songcircle.php" title="Songcircle - A virtual songwriter's circle">Register for one today!</a></strong>
               </p>
             </section>
             <section class="slide-panel" data-image="images/banner/slide_6.jpg" id="slide-6">
@@ -275,15 +237,16 @@
 
             -->
             <div class="share-links">
+              <p>Share this page:</p>
               <ul>
                 <li>
-                  <img src="images/icons/social icons/facebook.png" id="facebook">
+                  <img src="images/icons/social icons/facebook.png" class="facebook">
                 </li>
                 <li>
-                  <img src="images/icons/social icons/twitter.png" id="twitter">
+                  <img src="images/icons/social icons/twitter.png" class="twitter">
                 </li>
                 <li>
-                  <img src="images/icons/social icons/linkedIn.png" id="linkedIn">
+                  <img src="images/icons/social icons/linkedIn.png" class="linkedIn">
                 </li>
               </ul>
             </div>
@@ -316,8 +279,9 @@
         </form>
       <!-- end of: registration form -->
 
-      <script type="text/javascript" src="js/slide-gallery.js"></script>
+      <!-- Javascripts -->
       <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+      <script type="text/javascript" src="js/slide-gallery.js"></script>
       <!-- // <script type="text/javascript" src="js/register_form.js"></script>
       // <script type="text/javascript" src="js/contact_form.js"></script> -->
       <script type="text/javascript" src="js/forms.js"></script>
@@ -396,8 +360,43 @@
       //
       // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
 
+      // social
+      window.fbAsyncInit = function() {
+         FB.init({
+           appId      : '984018624954627',
+           xfbml      : true,
+           version    : 'v2.4'
+         });
+       };
+
+       (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+      // Twitter
+        window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+
+          return t;
+        }(document, "script", "twitter-wjs"));
+
       // facebook share trigger event
-      $("div.share-links img#facebook").on('click',function(){
+      $(".facebook").on('click',function(){
         FB.ui({
             method: 'share',
             href: 'songfarm.ca/',
@@ -405,7 +404,7 @@
       });
 
       // twitter share trigger event
-      $("div.share-links img#twitter").on('click',function(){
+      $(".twitter").on('click',function(){
         // location.href='https://twitter.com/share';
         var width  = 575,
         height = 400,
@@ -421,7 +420,7 @@
         return false;
       });
 
-      $("div.share-links img#linkedIn").on('click',function(){
+      $(".linkedIn").on('click',function(){
         // location.href="https://www.linkedin.com/shareArticle?mini=true&url=http://songfarm.ca";
         var width  = 575,
         height = 400,
@@ -436,6 +435,7 @@
         window.open(url, 'linkedIn', opts);
         return false;
       });
+
       </script>
 
       <a href="#top"><div id="back-to-top"></div></a>

@@ -24,7 +24,7 @@ function slideGatherData(){
 		var panel_caption = $(this).html();
 		slideVars.panelContent[index] = '<div class="slide-panel" data-image-s="'+panel_image_s+'" style="background-image:url('+panel_image_l+');"><div class="overlay"></div><div class="panel-caption">'+panel_caption+'</div></div>';
 	});
-	var slideTimer = setInterval(slideAdvance,100);
+	var slideTimer = setInterval(slideAdvance,150);
 }
 
 function slideAdvance(){

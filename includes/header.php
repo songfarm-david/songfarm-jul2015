@@ -1,4 +1,16 @@
 <header id="header" >
+	<img src="images/top-bar.png">
+	<ul id="social_head">
+		<li class="facebook">
+			<!-- <img src="images/icons/social icons/facebook_s.png" > -->
+		</li>
+		<li class="twitter">
+			<!-- <img src="images/icons/social icons/twitter_s.png" > -->
+		</li>
+		<li class="linkedIn">
+			<!-- <img src="images/icons/social icons/linkedIn_s.png" > -->
+		</li>
+	</ul>
 	<h1 class="hide">Songfarm</h1>
 	<!-- h1 hidden // anchored link to top -->
 	<nav>
