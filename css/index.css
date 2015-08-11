@@ -62,7 +62,7 @@ header, nav, main, section, article, footer, figure, figcaption{
 body{
 	font-size:16px;
   font-weight: normal;
-  max-width:1600px; min-width: 320px;
+  max-width:1600px; min-width: 1400px;
   width:100%;
 	margin:0 auto;
 	line-height: 1;
@@ -94,13 +94,17 @@ header > img{
 }
 header#header ul#social_head{
   position:absolute;
-  top:-4px; right: 14.5%;
-  width:200px;
+  top:-4px; right: 12.75%;
+  width:250px;
   margin:0;
   height:60px;
   text-align: center;
 }
-#header ul#social_head li{ transition-duration: .250s; }
+#header ul#social_head li{
+  transition-duration: .250s;
+  margin:0;
+  height:50px; width:50px;
+}
 #header ul#social_head li:hover{ transition-duration: .250s; }
 header#header ul#social_head li.facebook{
   background: url('../images/icons/social icons/facebook_s.png');
@@ -123,6 +127,17 @@ header#header ul#social_head li.linkedIn{
 }
 header#header ul#social_head li.linkedIn:hover{
   background: url('../images/icons/social icons/linkedIn_s_hover.png');
+}
+header#header ul#social_head li a{
+  background: url('../images/icons/social icons/message.png') no-repeat;
+  height:50px; width:50px;
+  display: block;
+}
+header#header ul#social_head li a:hover{
+  background: url('../images/icons/social icons/message_hover.png') no-repeat;
+}
+header#header ul#social_head a:hover:before{
+  content: '';
 }
 
 header nav{ font-size: 1.2em; }

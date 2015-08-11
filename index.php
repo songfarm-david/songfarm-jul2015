@@ -9,9 +9,9 @@
         <meta property="og:url" content="http://www.songfarm.ca">
         <meta property="og:title" content="Cultivating Music Talent From The Ground Up">
         <meta property="og:description" content="Songfarm is a feedback, exposure and live-collaboration platform for aspiring singer/songwriters. Upload your raw videos, receive feedback from the Songfarm Community of Artists, Industry Professionals and Fans and begin growing your career. Register Today!">
-        <meta property="og:image" content="http://www.songfarm.ca/images/singer.jpg">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="450">
+        <meta property="og:image" content="http://www.songfarm.ca/images/songfarm_logo_l.png">
+        <meta property="og:image:width" content="1772">
+        <meta property="og:image:height" content="1170">
 
 
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -28,8 +28,49 @@
           <script src="js/respond.js" type="text/javascript"></script>
           <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
         <![end if]-->
+        <style>
+          span.farmedOut{
+            font-style: italic;
+          }
+        </style>
     </head>
     <body id="top">
+      <script>
+      // social
+      window.fbAsyncInit = function() {
+         FB.init({
+           appId      : '984018624954627',
+           xfbml      : true,
+           version    : 'v2.4'
+         });
+       };
+
+       (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+      // Twitter
+        window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+
+          return t;
+        }(document, "script", "twitter-wjs"));
+      </script>
 
       <!-- Logo and Navigation -->
       <?php include 'includes/header.php' ?>
@@ -126,7 +167,7 @@
               <img src="images/icons/farmedOut_icon.png">
               <h3>Get Farmed Out</h3>
               <p>
-                Being an artist at Songfarm means being seen and heard - and that includes by Industry decision makers. When you get "Farmed Out" we'll make sure the rest of the community hears about it.
+                One of the goals of Songfarm is to help get your songs discovered and "Farmed Out" to music consumers and Industry professionals. When you do, you'll receive the <span class="farmedOut">Farmed Out Badge</span> publically visible on your profile and the freshly harvested song.
               </p>
             </section>
             <section class="feature">
@@ -225,32 +266,7 @@
             <p></p>
           </div>
           <!-- Footer -->
-          <footer>
-            <p>
-              <small>&copy; 2015 Songfarm. All rights reserved.</small>
-            </p>
-            <!-- <p class="back-to-top">
-              <a href="#top" title="Jump back to the top of the page">Back to Top</a>
-            </p>
-
-            Add a Privacy Policy
-
-            -->
-            <div class="share-links">
-              <p>Share this page:</p>
-              <ul>
-                <li>
-                  <img src="images/icons/social icons/facebook.png" class="facebook">
-                </li>
-                <li>
-                  <img src="images/icons/social icons/twitter.png" class="twitter">
-                </li>
-                <li>
-                  <img src="images/icons/social icons/linkedIn.png" class="linkedIn">
-                </li>
-              </ul>
-            </div>
-          </footer>
+          <?php include 'includes/footer.php' ?>
         </article>
 
       </main>
@@ -360,40 +376,7 @@
       //
       // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
 
-      // social
-      window.fbAsyncInit = function() {
-         FB.init({
-           appId      : '984018624954627',
-           xfbml      : true,
-           version    : 'v2.4'
-         });
-       };
 
-       (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-      // Twitter
-        window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
-
-          return t;
-        }(document, "script", "twitter-wjs"));
 
       // facebook share trigger event
       $(".facebook").on('click',function(){

@@ -10,6 +10,9 @@
 		<li class="linkedIn">
 			<!-- <img src="images/icons/social icons/linkedIn_s.png" > -->
 		</li>
+		<li>
+			<a href="index.php#contactUs" title="Contact Us" rel="bookmark"></a>
+		</li>
 	</ul>
 	<h1 class="hide">Songfarm</h1>
 	<!-- h1 hidden // anchored link to top -->
