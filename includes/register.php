@@ -1,13 +1,14 @@
-<?php include ('db_connect.php'); ?>
-<?php
+<?php include ('db_connect.php');
+
+session_start();
 
 if ($_POST){
 	// get the value of user_type
 	$userType = $_POST["user_type"];
 
 	// get and sanitize user name
-	$userName = filter_var($_POST["user_name"],FILTER_SANITIZE_STRING);
-	$userName = filter_var($userName,FILTER_SANITIZE_SPECIAL_CHARS);
+	$userName = filter_var($_POST["user_name"], FILTER_SANITIZE_STRING);
+	$userName = filter_var($userName, FILTER_SANITIZE_SPECIAL_CHARS);
 
 	// get and sanitize email
 	$userEmail = filter_var($_POST["user_email"],FILTER_SANITIZE_EMAIL);
@@ -23,12 +24,17 @@ if ($_POST){
 			$query .= "VALUES ($userType, '$userName', '$userEmail', NOW() )";
 			$result = mysqli_query($db, $query) or trigger_error("Query: $query \n <br /> MySql Error: " . mysqli_errno($db));
 			if($result){
-				echo "Thanks for Registering!";
+				$message[] = "Thanks for Registering!";
+				$message[] = $_SESSION['username'] = $userName;
+				$message[] = true;
+				echo json_encode($message);
 			} else {
-				echo "Something went wrong with your registration. Please try back later.";
+				$message[] = "Something went wrong with your registration. Please try back later.";
+				echo json_encode($message);
 			}
 		} else {
-			echo 'You have already registered with that email.';
+			$message[] = 'It seems that your email has already been registered.';
+			echo json_encode($message);
 		}
 
 	} // end of if ($userType && $userName && $userEmail)

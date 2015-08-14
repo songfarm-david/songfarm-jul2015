@@ -2,6 +2,6 @@
 session_start();
 if(session_destroy())
 {
-header("Location: signUp_Login.php");
+header("Location: /Songfarm-Jul2015/index.php");
 }
 ?>

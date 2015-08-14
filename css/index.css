@@ -160,6 +160,20 @@ header .logo{
   position: absolute;
   top:44px; left:13.3%;
 }
+header div.logo:after{
+  content: 'BETA';
+  position: absolute;
+  right:-30px; top:30px;
+  font-size: 0.75em;
+  cursor: default;
+  transition-duration: 0;
+  color:#000;
+}
+header div.logo:hover:after{
+  color: #000;
+  transition-duration: 0;
+  cursor: default;
+}
 header ul{
   width:72.5%;
   margin:47px auto;
@@ -386,18 +400,6 @@ div#back-to-top:after{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*  Banner Slides styles  */
 .slide-container{
   height:470px;
@@ -562,9 +564,9 @@ div#thank-you_message{
 .hide{ display:none; }
 #register-form span.error{
 	position:absolute;
-	left:65px;
+	left:15px;
 	width:65%;
-	font-size: 0.8em;
+	font-size: 0.85em;
 	color:red;
 }
 #register-form img{
@@ -593,23 +595,27 @@ div#thank-you_message{
 	bottom:0;
 	left:0;
 	color: #2A5C03;
-	width:30%; height:390px;
+	width:30%; height: 500px;
 	margin:auto;
 	padding:2em auto;
 	text-align: center;
 	font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
-	background:#fff;
+	background:rgba(0,0,0,0);
   font-size:1.1em;
 }
-#register-form div{
-	margin:24px 16px;
+#register-form > div{
+  padding:22px 0 50px;
+  background:#fff;
 }
 #register-form div > p{
-	margin:60px auto 50px;
-  font-size:1.1em;
+	margin:52px auto 50px;
+  font-size:1.2em;
 }
 #register-form div + div > p{
-	margin-bottom: 16px;
+	margin-bottom: 40px;
+}
+#register-form label{
+  font-size: 1.1em;
 }
 #register-form div.user{
 	height:126px; width:126px;
@@ -627,8 +633,17 @@ div#thank-you_message{
 	color:#fff;
 	transition-duration: .250s;
 }
+
+#register-form div.user.inactive{
+	background: rgba(0,0,0,.25);
+}
+#register-form div.user.inactive:hover{
+  cursor: default;
+  color: inherit;
+}
+
 #register-form div + div input:not([type=submit]){
-	border: 1px solid #99EE20;
+	border: 2px solid rgba(153, 238, 32, .5);
 	display: block;
 	margin: 1.5em auto 0.25em;
 	padding:0.65em; padding-left: 1em;
@@ -643,7 +658,7 @@ div#thank-you_message{
 #register-form div + div input[type=submit]{
 	cursor: pointer;
 	border-radius: 24px;
-	margin:1.75em auto 16px;
+	margin:2em auto 16px;
 	padding:0.5em 1em;
 	display: block;
 	background-color: #99EE20;
