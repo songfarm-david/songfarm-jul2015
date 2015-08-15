@@ -1,4 +1,4 @@
-<?php include('includes/login.php'); ?>
+<?php include('../includes/login.php'); ?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -71,7 +71,7 @@
       </script>
 
       <!-- Logo and Navigation -->
-      <?php include 'includes/header.php' ?>
+      <?php include '../includes/header.php' ?>
 
       <!-- Main Content -->
       <main>
@@ -260,7 +260,7 @@
             <p></p>
           </div>
           <!-- Footer -->
-          <?php include 'includes/footer.php' ?>
+          <?php include '../includes/footer.php' ?>
         </article>
 
       </main>

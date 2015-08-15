@@ -59,7 +59,7 @@ $("#register-form").validate({
 		var formData = form.serialize();
 		// send data to php validation file
 		$.ajax({
-			url:'includes/register.php',
+			url:'../includes/register.php',
 			type:'POST',
 			data: formData,
 			dataType:'json',
@@ -72,7 +72,7 @@ $("#register-form").validate({
 					setTimeout(function(){
 						$('#overlay, form#register-form').fadeOut('slow');
 						$(".register").off();
-						window.location.href = 'sandbox/workshop.php';
+						window.location.href = 'workshop.php';
 					},2000)
 				} else {
 					setTimeout(function(){
@@ -121,13 +121,13 @@ $('#login-form').validate({
 		var form 			= $('#login-form');
 		var formData 	= form.serialize();
 			$.ajax({
-				url 	: 'includes/login.php',
+				url 	: '../includes/login.php',
 				type 	: 'POST',
 				data 	: formData,
 				dataType : 'JSON',
 				success:function(data){
 					if($.inArray(true,data) !== -1){
-						window.location.href = 'sandbox/workshop.php';
+						window.location.href = 'workshop.php';
 					} else {
 						$('span#login-error').html(data);
 					}
@@ -135,35 +135,6 @@ $('#login-form').validate({
 			}) // ajax
 	} // submit handler
 }); // validate
-
-
-
-// $('#submitLogIn').on('click', function(e){
-// 	e.preventDefault();
-//
-// 	$e.validate({
-// 		errorElement : 'span',
-// 		rules : {
-// 			username : 'required',
-// 			password : 'required'
-// 		},
-// 		messages : {
-// 			username : 'Please enter your Name or Email',
-// 			password : 'Please enter your Password'
-// 		}
-// 	}); // validate
-// 	// get form values
-// 	var form 			= $('#login-form');
-// 	var formData 	= form.serialize();
-// 	$.ajax({
-// 		url 	: 'includes/login.php',
-// 		type 	: 'POST',
-// 		data 	: formData,
-// 		success:function(data){
-// 			$('span#login-error').html(data);
-// 		}
-// 	})
-// })
 
 
 // CONTACT FORM
@@ -178,7 +149,7 @@ $("form#contact-form div.button").on('click', function(){
 			var formData = form.serialize();
 			// send data to php validation file
 			$.ajax({
-				url:'includes/contact_form.php',
+				url:'../includes/contact_form.php',
 				type:'POST',
 				data: formData,
 				success: function(data){
