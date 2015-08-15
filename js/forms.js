@@ -1,6 +1,6 @@
 
 // This page contains scripting for both
-// the REGISTRATION form & the CONTACT FORM
+// the REGISTRATION, LOG IN, & CONTACT FORM
 
 // on click 'REGISTER TODAY'
 $(".register").on('click',function(){
@@ -40,6 +40,16 @@ $("#register-form").validate({
 	rules : {
 		user_name : {	// checking to see the name is only letters
 			lettersonly:true
+		},
+		user_password : 'required',
+		conf_password: {
+			equalTo : '#userpassword'
+		}
+	},
+	messages : {
+		user_password : 'You must enter a password',
+		conf_password : {
+			equalTo : 'Passwords don\'t match'
 		}
 	},
 	// call a custom handler
@@ -65,10 +75,9 @@ $("#register-form").validate({
 						window.location.href = 'sandbox/workshop.php';
 					},2000)
 				} else {
-					// will have to have another conditional statement
-					// elseif for revert to form vs. closing the form if there was an error... or perhaps not.
-					// populate form fields with already filled data
-					console.log('revert to form');
+					setTimeout(function(){
+						$('#overlay, form#register-form').fadeOut('slow')
+					},3000)
 				}
 			} // success: function(data)
 		}); // $.ajax
@@ -86,6 +95,75 @@ function resetForm($form) {
 jQuery.validator.addMethod("lettersonly", function(value, element) {
 	return this.optional(element) || /^[a-z\s]+$/i.test(value);
 }, "Only letters and whitespace allowed");
+
+
+// Log In drop-down
+$('#login').on('click', function(){
+	$('#login-form').toggle(500, function(){
+		$('#login-form input[type=text]').focus();
+	});
+})
+
+$('#login-form').validate({
+	errorElement : 'span',
+	rules : {
+		username : 'required',
+		password : 'required'
+	},
+	messages : {
+		username : 'Please enter your Name or Email',
+		password : 'Please enter your Password'
+	},
+	submitHandler: function(form){
+		$('#submitLogIn').submit(function(e){
+			e.preventDefault();
+		})
+		var form 			= $('#login-form');
+		var formData 	= form.serialize();
+			$.ajax({
+				url 	: 'includes/login.php',
+				type 	: 'POST',
+				data 	: formData,
+				dataType : 'JSON',
+				success:function(data){
+					if($.inArray(true,data) !== -1){
+						window.location.href = 'sandbox/workshop.php';
+					} else {
+						$('span#login-error').html(data);
+					}
+				} // success
+			}) // ajax
+	} // submit handler
+}); // validate
+
+
+
+// $('#submitLogIn').on('click', function(e){
+// 	e.preventDefault();
+//
+// 	$e.validate({
+// 		errorElement : 'span',
+// 		rules : {
+// 			username : 'required',
+// 			password : 'required'
+// 		},
+// 		messages : {
+// 			username : 'Please enter your Name or Email',
+// 			password : 'Please enter your Password'
+// 		}
+// 	}); // validate
+// 	// get form values
+// 	var form 			= $('#login-form');
+// 	var formData 	= form.serialize();
+// 	$.ajax({
+// 		url 	: 'includes/login.php',
+// 		type 	: 'POST',
+// 		data 	: formData,
+// 		success:function(data){
+// 			$('span#login-error').html(data);
+// 		}
+// 	})
+// })
 
 
 // CONTACT FORM

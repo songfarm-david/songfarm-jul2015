@@ -1,3 +1,4 @@
+<?php include('includes/login.php'); ?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -278,16 +279,10 @@
           </div>
           <div id="second" class="hide">
             <p>Complete the form below to register</p>
-
-              <input type="text" id="username" name="user_name" data-msg-required="The name field is required" minlength="2" placeholder="Artist Name or Real Name" required>
-
-              <input type="email" id="useremail" name="user_email" data-msg-required="The email field is required" placeholder="Email" required>
-
-              <input type="password" id="userpassword" name="user_password" data-msg-required="You must enter a password" minlength="3" placeholder="Password" required>
-
-              <input type="password" id="confpassword" name="conf_password" data-msg-required="Please confirm your password" placeholder="Confirm password" required>
-
-
+            <input type="text" id="username" name="user_name" data-msg-required="The name field is required" minlength="2" placeholder="Artist Name or Real Name" required>
+            <input type="email" id="useremail" name="user_email" data-msg-required="The email field is required" placeholder="Email" required>
+            <input type="password" id="userpassword" name="user_password" minlength="3" placeholder="Password" required>
+            <input type="password" id="confpassword" name="conf_password" data-msg-required="Please confirm your password" placeholder="Confirm password" required>
       			<input type="submit" id="submitForm" value="Register Me!">
           </div>
           <!-- form result message -->
@@ -296,6 +291,8 @@
           </div>
         </form>
       <!-- end of: registration form -->
+
+
 
       <!-- Javascripts -->
       <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -341,44 +338,6 @@
 
           }
       });
-
-      //image preloader
-      function preloader() {
-      	if (document.getElementById) {
-      		// document.getElementById("slide-1").style.background = "url(images/banner/slide_1.jpg) no-repeat -9999px -9999px";
-      		// document.getElementById("slide-4").style.background = "url(images/banner/slide_4.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-2").style.background = "url(images/banner/slide_2.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-5").style.background = "url(images/banner/slide_5.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-6").style.background = "url(images/banner/slide_6.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-3").style.background = "url(images/banner/slide_3.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-7").style.background = "url(images/banner/slide_7.jpg) no-repeat -9999px -9999px";
-      	}
-      }
-      function addLoadEvent(func) {
-      	var oldonload = window.onload;
-      	if (typeof window.onload != 'function') {
-      		window.onload = func;
-      	} else {
-      		window.onload = function() {
-      			if (oldonload) {
-      				oldonload();
-      			}
-      			func();
-      		}
-      	}
-      }
-
-      addLoadEvent(preloader);
-      // function for hover image pre-loading.. unfinished
-      // $.preloadImages = function() {
-      //   for (var i = 0; i < arguments.length; i++) {
-      //     $("<img />").attr("src", arguments[i]);
-      //   }
-      // }
-      //
-      // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
-
-
 
       // facebook share trigger event
       $(".facebook").on('click',function(){

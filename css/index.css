@@ -109,7 +109,6 @@ header#header ul#social_head{
 header#header ul#social_head li.facebook{
   background: url('../images/icons/social icons/facebook_s.png');
   height:50px; width:50px;
-
 }
 header#header ul#social_head li.facebook:hover{
   background: url('../images/icons/social icons/facebook_s_hover.png');
@@ -148,11 +147,25 @@ header ul li{
   position: relative;
 }
 header ul li a{ padding: .3em .1em; }
-header ul li a:hover::before{
+header ul#links li a:hover::before{
   content:url('../images/arrows_and_lines/navActive_arrow.png');
   position:absolute; left:-15px; top:3px;
 }
-
+header ul#links li:last-child{
+  right:-12px;
+}
+header ul#links li:nth-child(4):after{
+  content: '|';
+  position: relative;
+  right:-22px;
+}
+header ul#links li a[title="Log In"]:hover:before{
+  content:'';
+  position: relative;
+}
+header ul#links li:last-child:hover{
+  /*text-decoration: underline;*/
+}
 header .logo{
   height: 84px; width: 370px;
   background: url("../images/songfarm_logo.png") center center no-repeat;
@@ -179,8 +192,11 @@ header ul{
   margin:47px auto;
   height:76px;
   text-align: right;
+  position: relative;
 }
 header ul li { margin-left: 3%; }
+
+
 
 /*Register Buttons*/
 article#about div.register{
@@ -676,6 +692,43 @@ div#thank-you_message{
   box-shadow: 0 0 1pt 2pt #78C6FF;
 }
 #register-form div#message p{
-  line-height: 310px;
-  margin:0; padding:0;
+  line-height: 2em;
+  margin:4em 0; padding:1em 2em;
+}
+
+
+/*Login In form*/
+form#login-form{
+  position:absolute;
+  right:-20px;
+  top:64px;
+  z-index:11111;
+  background:#fff;
+  border:1px solid #ccc;
+  width:320px;
+}
+form#login-form input{
+  display: block;
+  margin:16px 16px;
+  width:90%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+span#login-error, span#username-error, span#password-error{
+  text-align: center;
+  line-height: 30px;
+  position: relative;
+  margin:-10px 0 6px;
+  display: block;
+  font-weight: bold;
+  color: #DD3131;
+}
+span#username-error, span#password-error{
+  line-height: 1;
+  margin:-10px 0;
+  font-size: 0.8em;
 }
