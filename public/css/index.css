@@ -159,6 +159,7 @@ header ul#links li:nth-child(4):after{
   position: relative;
   right:-22px;
 }
+#links{ content }
 header ul#links li a[title="Log In"]:hover:before{
   content:'';
   position: relative;
