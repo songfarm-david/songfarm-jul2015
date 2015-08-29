@@ -13,14 +13,17 @@
 				<?php echo $_SESSION['username']; ?>
 			</li>
 			<li>
-				<a href="signOut.php">Sign Out</a>
+				<a href="../includes/sign_out.php">Sign Out</a>
 			</li>
 		</ul>
 	</nav>
 	<header>
 		<h1><?php echo $_SESSION['username']; ?></h1>
 	</header>
+	<pre>
+		<?php print_r($_SESSION) ?>
 
+	</pre>
 
 </body>
 </html>

@@ -159,14 +159,11 @@ header ul#links li:nth-child(4):after{
   position: relative;
   right:-22px;
 }
-#links{ content }
 header ul#links li a[title="Log In"]:hover:before{
   content:'';
   position: relative;
 }
-header ul#links li:last-child:hover{
-  /*text-decoration: underline;*/
-}
+
 header .logo{
   height: 84px; width: 370px;
   background: url("../images/songfarm_logo.png") center center no-repeat;
@@ -180,7 +177,6 @@ header div.logo:after{
   right:-30px; top:30px;
   font-size: 0.75em;
   cursor: default;
-  transition-duration: 0;
   color:#000;
 }
 header div.logo:hover:after{
@@ -188,11 +184,13 @@ header div.logo:hover:after{
   transition-duration: 0;
   cursor: default;
 }
-header ul{
+header ul#links{
   width:72.5%;
   margin:47px auto;
   height:76px;
   text-align: right;
+}
+header ul#links li:last-child{
   position: relative;
 }
 header ul li { margin-left: 3%; }
@@ -581,10 +579,11 @@ div#thank-you_message{
 .hide{ display:none; }
 #register-form span.error{
 	position:absolute;
-	left:15px;
-	width:65%;
+	left:90px;
+	width:80%;
 	font-size: 0.85em;
 	color:red;
+  text-align: left;
 }
 #register-form img{
 	position: absolute;
@@ -694,7 +693,8 @@ div#thank-you_message{
 }
 #register-form div#message p{
   line-height: 2em;
-  margin:4em 0; padding:1em 2em;
+  margin: -.5em 0 -1.5em;
+  color: #DD3131;
 }
 
 
@@ -707,6 +707,7 @@ form#login-form{
   background:#fff;
   border:1px solid #ccc;
   width:320px;
+  padding-bottom: 6px;
 }
 form#login-form input{
   display: block;
@@ -719,17 +720,22 @@ form#login-form input{
   padding: 6px;
 }
 
-span#login-error, span#username-error, span#password-error{
+form#login-form span#login-error,
+form#login-form span#username-error,
+form#login-form span#password-error{
   text-align: center;
   line-height: 30px;
   position: relative;
-  margin:-10px 0 6px;
+  margin:-10px 0 0;
   display: block;
   font-weight: bold;
   color: #DD3131;
+  text-transform: none;
 }
-span#username-error, span#password-error{
+form#login-form span#username-error,
+form#login-form span#password-error{
   line-height: 1;
   margin:-10px 0;
   font-size: 0.8em;
+  text-transform: none;
 }
