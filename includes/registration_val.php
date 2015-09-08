@@ -1,5 +1,5 @@
-<?php session_start(); require_once('initialize.php'); ?>
-<?php
+<?php session_start();
+require_once('initialize.php'); 
 $errors = [];
 $user_data = [];
 if(isset($_POST['submit'])){

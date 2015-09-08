@@ -28,10 +28,7 @@
 				<!-- Login form -->
 				<?php include_once('../includes/forms/login.php'); ?>
 			</li>
-
 		</ul>
-
-
 	</nav>
 	<div class="register medium"></div>
 </header>

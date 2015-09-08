@@ -62,7 +62,8 @@ header, nav, main, section, article, footer, figure, figcaption{
 body{
 	font-size:16px;
   font-weight: normal;
-  max-width:1600px; min-width: 1400px;
+  max-width:1600px;
+  /*min-width: 1400px;*/
   width:100%;
 	margin:0 auto;
 	line-height: 1;
@@ -90,8 +91,15 @@ header{
 header > img{
   position: absolute;
   top:-16px; left:0;
-  width: 100%;
+  width: 1600px;
 }
+/*@media screen and (max-width:1599px) {
+  header > img{
+    position: absolute;
+    top:-16px; right:1%;
+    width: 1600px;
+  }
+}*/
 header#header ul#social_head{
   position:absolute;
   top:-4px; right: 12.75%;
@@ -202,7 +210,6 @@ article#about div.register{
   width:377px; height:89px;
   background: url('../images/buttons/register_l.png') no-repeat;
   padding:0;
-  /*opacity:0.5;*/
 }
 article#about div div.register{ margin-top:48px; }
 div.register:hover:before{
@@ -738,4 +745,79 @@ form#login-form span#password-error{
   margin:-10px 0;
   font-size: 0.8em;
   text-transform: none;
+}
+
+
+/* iPad styles (1024px) */
+
+@media screen and (max-width: 1024px) {
+  body{max-width: 1024px;}
+  header > img{
+    position: absolute;
+    top:-20px; left:-460px;
+    width: 1600px;
+  }
+  header#header ul#social_head{
+    position:absolute;
+    top:-5px; right: 7%;
+    width:250px;
+    margin:0;
+    height:60px;
+    text-align: center;
+  }
+  header .logo{
+    height: 84px; width: 370px;
+    background: url("../images/songfarm_logo.png") center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:44px; left:4.3%;
+  }
+  header ul#links{
+    width:50.5%;
+    margin:47px 2.8em 47px auto;
+    height:76px;
+    text-align: right;
+  }
+  header ul#links li:nth-child(4){
+    display:none;
+  }
+  header ul#links li:nth-child(3):after{
+    content: '|';
+    position: relative;
+    right:-22px;
+  }
+  header ul li { margin-left: 5%; }
+  header div.register.medium{
+    height:70px; width: 294px;
+    background: url('../images/buttons/register_m.png') no-repeat;
+    position:absolute; z-index:500;
+    bottom:-40px; right: 63px;
+  }
+  .slide-container .btn.prev{
+    left: 6.6%; z-index: 1004;
+    background-image: url('../images/arrows_and_lines/slider_arrow_left.png') ; background-position: 1px 0px;
+  }
+  .slide-container .btn.next{
+    right: 6.6%; z-index: 1004;
+    background-image: url('../images/arrows_and_lines/slider_arrow_right.png'); background-position: 1px 0px;
+  }
+
+  article#about > div{
+    padding-top: 110px;
+    width:374px;
+    margin-left: 13.8%;
+  }
+  article#about div.register{
+    width:377px; height:89px;
+    background: url('../images/buttons/register_m.png') no-repeat;
+    padding:0;
+  }
+  div.register:hover:before{
+    content: url('../images/buttons/register_m_hover.png');
+    position: relative;
+    top:-1px; left:-1px;
+    cursor:pointer;
+  }
+  article#about div div.register{ margin-top:39px; }
+
 }

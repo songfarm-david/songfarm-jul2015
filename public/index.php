@@ -140,8 +140,6 @@
                 Songfarm believes in supporting music talent. For that reason we've wired up the tip jar to feed direcly into your bank account so you'll receive instant deposits everytime a supporter donates to the cause.
               </p>
             </section>
-
-
             <div class="divide-two"></div>
           </div><!-- end of section first -->
 
