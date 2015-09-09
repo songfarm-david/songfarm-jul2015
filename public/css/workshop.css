@@ -64,6 +64,20 @@ a{
 	text-decoration: none;
 }
 
+button{
+	padding:12px 16px;
+	border-radius: 7%;
+	background: #99EE20;
+	color: #2A5C03;
+	font-size:1.2em;
+	border: none;
+}
+button:hover{
+	background: #3FA8F4;
+	color: #fff;
+	cursor: pointer;
+}
+
 /* Navigation */
 nav{
 	width:100%;
@@ -107,22 +121,21 @@ header h1{
 }
 
 main{
-	width:1600px;
-	margin: 0 auto;
+  width:100%; height: 100%;
 	border: 1px dotted #ccc;
 	padding: 45px 0 5px;
 	box-sizing: border-box;
 }
 
 /* tab container holds tabs and tab-content boxes */
-div#tab-container{
-	margin-left: 159px;
+#tab-container{
+  width:1280px;
+  margin:0 auto;
 	position: relative;
-	height:400px;
 }
 
 /* individual tabs */
-.tab{
+li.tab{
 	width:426px;
 	display: inline-block;
 	text-align: center;
@@ -135,40 +148,53 @@ li.tab a{
 	border: 1px solid #aaa;
 	width: 100%;
 	line-height: 56px;
-	margin:0; padding:0;
 	font-size:1.2em;
 }
-li.tab a:hover{
-	background: #fff;
-}
-li.tab a.active{
-	border-bottom: none;
-	background: #fff;
-}
+li.tab a:hover{	background: #fff; }
+li.tab a.active{ border-bottom: none; background: #fff; }
+
+
 /* tab content boxes */
 article.tab-content{
-	position: relative;
-	height: 300px;
+	height: 352px;
 	width: 1280px;
-	box-sizing: inherit;
-	padding: 0 160px;
+	padding: 38px 0; /* 158px */
 	border: 1px solid #aaa;
 	border-top: none;
 	position: absolute;
 	top:53px; left:0;
 	background: #fff;
-	overflow-y: scroll;
+
 }
-.tab-content.songcircle{
-	z-index:2;
-}
-.tab-content.songbook{
-	z-index: 1;
+.tab-content h3{
+  margin:-8px 0 28px;
+	font-size: 1.8em;
+  /*border: 1px solid blue;*/
+  box-sizing: border-box;
 }
 
-h3{
-	margin:36px 0;
-	font-size: 1.8em;
+/* Songcircle Tab */
+#tab-songcircle > div{
+  height: 100%;
+  float:right;
+  width: 81%;
+  padding: 1em 58px 0;
+  overflow-y: scroll;
+}
+#tab-songcircle .aside-left{
+  float:left;
+  /*position: fixed;*/ /* Make this fixed with scrolling */
+  width: 19%;
+  border-right: 2px dotted #ccc;
+  padding:1em 1em 0;
+  height:100%;
+  box-sizing: border-box;
+}
+#tab-songcircle .aside-left button{
+  border-radius: 12px;
+  margin-bottom: 0.5em;
+  font-size: inherit;
+  border:1px solid #86D21B;
 }
 
 table{
@@ -176,7 +202,7 @@ table{
 	border:1px solid green;
 	border-spacing: 0;
 	text-align: center;
-	margin-bottom: 1em;
+	/*margin-bottom: 1em;*/
 }
 td{
 	border: 1px solid black;
@@ -196,17 +222,4 @@ td.register{
 }
 .registered{
 	font-size: 0.65em;
-}
-button{
-	padding:12px 16px;
-	border-radius: 7%;
-	background: #99EE20;
-	color: #2A5C03;
-	font-size:1.2em;
-	border: none;
-}
-button:hover{
-	background: #3FA8F4;
-	color: #fff;
-	cursor: pointer;
 }

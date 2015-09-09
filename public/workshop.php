@@ -1,10 +1,9 @@
 <?php session_start();
 require_once('../includes/initialize.php');
-if(empty($_SESSION)){
-	$_SESSION['id'] = $_SESSION['username'] = "";
+if(empty($_SESSION) && !isset($_SESSION)){
+	$_SESSION['id'] = "";
+	$_SESSION['username'] = "Default User";
 }
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,14 +52,33 @@ if(empty($_SESSION)){
 							<td class="date">September 7th, 2015 - 07:00 GMT</td>
 							<td class="type">Open Songcircle <span class="registered"><a href="#">(<?php // dynamic count ?> Registered Members)</a></span></td>
 							<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-								<td class="register"><input type="submit" value="<?php // dynmaic status ?>" name="register"></input></td>
+								<td class="register"><input type="submit" value="Register<?php // dynmaic status ?>" name="register"></input></td>
 								<input type="hidden" value="<?php // dynamic value ?>" name="songcircle_id">
 								<input type="hidden" value="<?php echo $_SESSION['id'] ?>" name="user_id">
 								<input type="hidden" value="<?php echo $_SESSION['username'] ?>" name="username">
 							</form>
 						</tr>
+						<tr>
+							<td class="date">September 14th, 2015 - 02:00 GMT</td>
+							<td class="type">Open Songcircle <span class="registered"><a href="#">(<?php // dynamic count ?> Registered Members)</a></span></td>
+							<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+								<td class="register"><input type="submit" value="Register<?php // dynmaic status ?>" name="register"></input></td>
+								<input type="hidden" value="<?php // dynamic value ?>" name="songcircle_id">
+								<input type="hidden" value="<?php echo $_SESSION['id'] ?>" name="user_id">
+								<input type="hidden" value="<?php echo $_SESSION['username'] ?>" name="username">
+							</form>
+						</tr>
+
 					</table>
 				</div>
+				<aside class="aside-left">
+					<button>
+						Host your own Songcircle
+					</button>
+					<button>
+						Invite other Songwriters
+					</button>
+				</aside>
 			</article>
 
 			<article id="tab-liveConcert" class="tab-content">

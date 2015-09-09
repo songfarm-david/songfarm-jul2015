@@ -63,7 +63,7 @@ body{
 	font-size:16px;
   font-weight: normal;
   max-width:1600px;
-  /*min-width: 1400px;*/
+  min-width: 1600px;
   width:100%;
 	margin:0 auto;
 	line-height: 1;
@@ -750,7 +750,7 @@ form#login-form span#password-error{
 
 /* iPad styles (1024px) */
 
-@media screen and (max-width: 1024px) {
+/*@media screen and (max-width: 1024px) {
   body{max-width: 1024px;}
   header > img{
     position: absolute;
@@ -820,4 +820,4 @@ form#login-form span#password-error{
   }
   article#about div div.register{ margin-top:39px; }
 
-}
+}*/
