@@ -69,7 +69,10 @@ function last_inserted_id($db){
 
 // validation functions
 function has_presence($value) {
-	return isset($value) && !empty(trim($value));
+	$value = trim($value);
+	if(isset($value) && !empty($value)){
+		return $value;
+	}
 	// returns TRUE if value ISSET && value is NOT EMPTY after TRIM
 }
 
