@@ -29,6 +29,7 @@ if(isset($_POST['submit'])) {
 			if(password_verify($password, $result['user_password'])) {
 				$_SESSION['id'] = $result['id'];
 				$_SESSION['username'] = $result['user_name'];
+				$_SESSION['logged_in'] = true;
 				$messages[] = true;
 				echo json_encode($messages);
 			} else {

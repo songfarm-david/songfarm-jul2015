@@ -1,5 +1,5 @@
 <?php session_start();
-require_once('initialize.php'); 
+require_once('initialize.php');
 $errors = [];
 $user_data = [];
 if(isset($_POST['submit'])){
@@ -77,8 +77,25 @@ if(isset($_POST['submit'])){
 				// $messages[] = "Thanks for registering";
 				$_SESSION['id'] = last_inserted_id($db);
 				$_SESSION['username'] = $user_data['user_name'];
-				$messages[] = true;
-				echo json_encode($messages);
+				$_SESSION['logged_in'] = true;
+				// $messages[] = true;
+				// echo json_encode($messages);
+
+				// NOTE: Send Registration Email
+				$to = $user_email;
+				$subject = "Thanks for Registering, {$user_name}!";
+				$from = "Songfarm"; // not a valid email here..probably needs to be
+				$message = // <<<< special html block >>>>
+
+				$headers = "From: {$from}\r\n"; // need an email here
+				$headers.= "Reply-to: {$email}\r\n"; // songfarm email
+				$headers.= "Bcc: David Gaskin <davidburkegaskin@gmail.com>\r\n";
+				$headers.= "MIME-Version: 1.0\r\n";
+				$headers.= "Content-Type: text/plain; charset=utf-8";
+				$result = mail($to, $subject, $message, $headers, '-fsongfarm'); // 5th arg. possible bug
+				if(!$result){
+					return false; // error log the message
+				}
 			} else {
 				// failure
 				$messages[] = "There was an error inserting into the database.";

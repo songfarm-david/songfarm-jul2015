@@ -51,7 +51,7 @@ if(isset($_POST['submit'])) {
   // if no errors, then assemble the email
   if(empty($errors)) {
     $to = 'David Gaskin <davidburkegaskin@gmail.com>'; // this may cause a bug on Windows systems
-    $subject.= " at ".strftime("%Y", time());
+    $subject.= " sent ".strftime("%a, %B %d at %I:%M %p", time());
     $from = "{$name} <contactform@songfarm.ca>"; // this may cause a bug on Windows systems
     $message = "New message from: {$name}\r\n\r\n{$message}";
     $headers = "From: {$from}\r\n";
@@ -62,7 +62,7 @@ if(isset($_POST['submit'])) {
     /* use 'X-' ... in your headers to append non-standard headers */
     $result = mail($to, $subject, $message, $headers, '-fsongfarm'); // 5th arg. possible bug
     if($result){
-      echo "Thank you {$name} for getting in touch!";
+      echo "Thank you, {$name}, for getting in touch!";
     }else{
       echo "We were unable to send your message at this time. Please try again later.";
     }
