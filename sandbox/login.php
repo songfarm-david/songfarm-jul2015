@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'database.php';
+include 'db_connect.php';
 
 $name = "";
 
@@ -11,15 +11,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$useremail 	= filter_var($_POST["username"],FILTER_SANITIZE_EMAIL);
 	$password 	= mysqli_real_escape_string($db, $_POST['password']);
 
-
 	// check that the user name exists
 	$query 	= "SELECT id FROM sign_up WHERE artist_name = '$username' OR artist_email = '$useremail'";
 	$result = mysqli_query($db, $query);
 
-
 	if(!mysqli_num_rows($result))
 	{
-		echo 'That user doesn\'t exist';
+		echo 'Sorry. We don\'t have any users by that name';
 	}
 	else
 	{
@@ -34,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// verify password
 		if( password_verify($password, $retrieved_password) ) {
 			$_SESSION['username'] = $session_name;
-			header('location: loggedIn.php');
+			header('location: workshop.php');
 		}
 		else {
 			echo 'Your password is incorrect';

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'database.php';
+include 'db_connect.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // test for successful database entry
   	if($result){
 			$_SESSION['username'] = $artist_name;
-  		header('location: loggedIn.php');
+  		header('location: workshop.php');
   	} else {
   		echo 'There was an error with your sign up!';
   	}

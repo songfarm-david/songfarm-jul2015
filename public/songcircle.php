@@ -77,7 +77,7 @@
 
     </head>
 		<body>
-      <?php include 'includes/header.php' ?>
+      <?php include '../includes/header.php' ?>
       <script>
       // social
       window.fbAsyncInit = function() {
@@ -138,7 +138,7 @@
       </article>
 			<!-- Use RDFa to define songcircle events // schema.org -->
 
-      <?php include 'includes/footer.php'; ?>
+      <?php include '../includes/footer.php'; ?>
       <!-- remember to use the '<time></time>' attribute when scheduling songcircles-->
 
       <!-- registration form -->

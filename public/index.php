@@ -1,9 +1,11 @@
+<?php session_start(); ?>
+<?php require_once("../includes/initialize.php"); ?>
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Songfarm grows music talent and cultivates careers for songwriters from the ground up!">
-        <title>Songfarm - Unearthing Raw Music Talent</title>
+        <meta name="description" content="Songfarm nurtures music talent and cultivates songwriters' careers from the ground up!">
+        <title>Songfarm - Growing Music Talent From The Ground Up</title>
         <!-- <link rel="shortcut icon" type="image/x-icon" href="images/songfarm_favicon.png" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta property="og:url" content="http://www.songfarm.ca">
@@ -12,12 +14,9 @@
         <meta property="og:image" content="http://www.songfarm.ca/images/songfarm_logo_l.png">
         <meta property="og:image:width" content="1772">
         <meta property="og:image:height" content="1170">
-
-
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
         <link href="css/index.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-
         <script type="text/javascript" src="//platform.linkedin.com/in.js">
             api_key:   77fxwmu499ca9c
             authorize: true
@@ -35,46 +34,10 @@
         </style>
     </head>
     <body id="top">
-      <script>
-      // social
-      window.fbAsyncInit = function() {
-         FB.init({
-           appId      : '984018624954627',
-           xfbml      : true,
-           version    : 'v2.4'
-         });
-       };
-
-       (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-      // Twitter
-        window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
-
-          return t;
-        }(document, "script", "twitter-wjs"));
-      </script>
-
+      <!-- Javascripts for handling social networking features -->
+      <script type="text/javascript" src="js/social.js"></script>
       <!-- Logo and Navigation -->
-      <?php include 'includes/header.php' ?>
-
+      <?php include("../includes/layout/header.php") ?>
       <!-- Main Content -->
       <main>
 
@@ -237,63 +200,19 @@
         <div class="rounded-contact"></div>
         <article id="contactUs" >
           <h2>Contact Us</h2>
-          <form id="contact-form" action="contact_form.php" method="post">
-          	<div>
-    	        <!-- <label for="name">Name:</label> -->
-    	        <input type="text" id="name" name="name" minlength="2" placeholder="Your name" autocomplete="off" required />
-    	    	</div>
-    	    	<div>
-    	        <label for="mail">Email:</label>
-    	        <input type="email" id="mail" name="email" placeholder="Contact email" required />
-    	    	</div>
-    				<div>
-    					<label for="subject">Subject:</label>
-    					<input type="text" id="subject" name="subject" placeholder="Subject of message (optional)"/>
-    				</div>
-    	    	<div>
-    	        <label for="msg">Message:</label>
-    	        <textarea id="msg" name="message" placeholder="Comments, feedback, suggestions..." required></textarea>
-    	    	</div>
-    				<div class="button">
-    	        <button type="submit" id="submit_button" value="submit"></button>
-              <!-- <input type="submit"> -->
-    	    	</div>
-            <!-- // <script>
-            // $("form#contact-form").validate()
-            // </script> -->
-    			</form>
-          <div id="thank-you_message" class="hide">
-            <p></p>
-          </div>
+          <?php include(LIB_PATH.DS."forms/contact_form.php"); ?>
+
           <!-- Footer -->
-          <?php include 'includes/footer.php' ?>
+          <?php include(LIB_PATH.DS."layout/footer.php") ?>
         </article>
 
       </main>
 
       <!-- registration form -->
-      <div id="overlay" class="hide"></div>
-        <form id="register-form" action="#" method="post" class="hide">
-          <img src="images/buttons/close_button_24.png">
-          <div>
-            <p>Please Select Your User Type:</p>
-      			<div class="user" value="1">Artist</div>
-      			<div class="user" value="2">Industry</div>
-      			<div class="user" value="3">Fan</div>
-      			<input type="hidden" id="user_type" name="user_type" value="">
-          </div>
-          <div id="second" class="hide">
-            <p>Please Enter Your Name And Email</p>
-      			<input type="text" id="username" name="user_name" data-msg-required="The name field is required" minlength="2" placeholder="Your Name" required>
-      			<input type="email" id="useremail" name="user_email" data-msg-required="The email field is required" placeholder="Your Email" required>
-      			<input type="submit" id="submitForm" value="Register Me!">
-          </div>
-          <!-- form result message -->
-          <div id="message" class="hide">
-            <p></p>
-          </div>
-        </form>
+      <?php require_once(LIB_PATH.DS."forms/register.php"); ?>
       <!-- end of: registration form -->
+
+
 
       <!-- Javascripts -->
       <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -339,44 +258,6 @@
 
           }
       });
-
-      //image preloader
-      function preloader() {
-      	if (document.getElementById) {
-      		// document.getElementById("slide-1").style.background = "url(images/banner/slide_1.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-4").style.background = "url(images/banner/slide_4.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-2").style.background = "url(images/banner/slide_2.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-5").style.background = "url(images/banner/slide_5.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-6").style.background = "url(images/banner/slide_6.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-3").style.background = "url(images/banner/slide_3.jpg) no-repeat -9999px -9999px";
-      		document.getElementById("slide-7").style.background = "url(images/banner/slide_7.jpg) no-repeat -9999px -9999px";
-      	}
-      }
-      function addLoadEvent(func) {
-      	var oldonload = window.onload;
-      	if (typeof window.onload != 'function') {
-      		window.onload = func;
-      	} else {
-      		window.onload = function() {
-      			if (oldonload) {
-      				oldonload();
-      			}
-      			func();
-      		}
-      	}
-      }
-
-      addLoadEvent(preloader);
-      // function for hover image pre-loading.. unfinished
-      // $.preloadImages = function() {
-      //   for (var i = 0; i < arguments.length; i++) {
-      //     $("<img />").attr("src", arguments[i]);
-      //   }
-      // }
-      //
-      // $.preloadImages("hoverimage1.jpg","hoverimage2.jpg");
-
-
 
       // facebook share trigger event
       $(".facebook").on('click',function(){

@@ -92,3 +92,7 @@ span.error{
 #register-form div#message p{
 	margin-top:6em;
 }
+
+.inactive{
+	background: rgba(0,0,0,.5);
+}

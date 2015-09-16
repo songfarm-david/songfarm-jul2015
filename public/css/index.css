@@ -109,7 +109,6 @@ header#header ul#social_head{
 header#header ul#social_head li.facebook{
   background: url('../images/icons/social icons/facebook_s.png');
   height:50px; width:50px;
-
 }
 header#header ul#social_head li.facebook:hover{
   background: url('../images/icons/social icons/facebook_s_hover.png');
@@ -148,9 +147,21 @@ header ul li{
   position: relative;
 }
 header ul li a{ padding: .3em .1em; }
-header ul li a:hover::before{
+header ul#links li a:hover::before{
   content:url('../images/arrows_and_lines/navActive_arrow.png');
   position:absolute; left:-15px; top:3px;
+}
+header ul#links li:last-child{
+  right:-12px;
+}
+header ul#links li:nth-child(4):after{
+  content: '|';
+  position: relative;
+  right:-22px;
+}
+header ul#links li a[title="Log In"]:hover:before{
+  content:'';
+  position: relative;
 }
 
 header .logo{
@@ -160,13 +171,31 @@ header .logo{
   position: absolute;
   top:44px; left:13.3%;
 }
-header ul{
+header div.logo:after{
+  content: 'BETA';
+  position: absolute;
+  right:-30px; top:30px;
+  font-size: 0.75em;
+  cursor: default;
+  color:#000;
+}
+header div.logo:hover:after{
+  color: #000;
+  transition-duration: 0;
+  cursor: default;
+}
+header ul#links{
   width:72.5%;
   margin:47px auto;
   height:76px;
   text-align: right;
 }
+header ul#links li:last-child{
+  position: relative;
+}
 header ul li { margin-left: 3%; }
+
+
 
 /*Register Buttons*/
 article#about div.register{
@@ -386,18 +415,6 @@ div#back-to-top:after{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*  Banner Slides styles  */
 .slide-container{
   height:470px;
@@ -562,10 +579,11 @@ div#thank-you_message{
 .hide{ display:none; }
 #register-form span.error{
 	position:absolute;
-	left:65px;
-	width:65%;
-	font-size: 0.8em;
+	left:90px;
+	width:80%;
+	font-size: 0.85em;
 	color:red;
+  text-align: left;
 }
 #register-form img{
 	position: absolute;
@@ -593,23 +611,27 @@ div#thank-you_message{
 	bottom:0;
 	left:0;
 	color: #2A5C03;
-	width:30%; height:390px;
+	width:30%; height: 500px;
 	margin:auto;
 	padding:2em auto;
 	text-align: center;
 	font-family: 'museo_sans100', Arial, Helvetica, sans-serif;
-	background:#fff;
+	background:rgba(0,0,0,0);
   font-size:1.1em;
 }
-#register-form div{
-	margin:24px 16px;
+#register-form > div{
+  padding:22px 0 50px;
+  background:#fff;
 }
 #register-form div > p{
-	margin:60px auto 50px;
-  font-size:1.1em;
+	margin:52px auto 50px;
+  font-size:1.2em;
 }
 #register-form div + div > p{
-	margin-bottom: 16px;
+	margin-bottom: 40px;
+}
+#register-form label{
+  font-size: 1.1em;
 }
 #register-form div.user{
 	height:126px; width:126px;
@@ -627,8 +649,17 @@ div#thank-you_message{
 	color:#fff;
 	transition-duration: .250s;
 }
+
+#register-form div.user.inactive{
+	background: rgba(0,0,0,.25);
+}
+#register-form div.user.inactive:hover{
+  cursor: default;
+  color: inherit;
+}
+
 #register-form div + div input:not([type=submit]){
-	border: 1px solid #99EE20;
+	border: 2px solid rgba(153, 238, 32, .5);
 	display: block;
 	margin: 1.5em auto 0.25em;
 	padding:0.65em; padding-left: 1em;
@@ -643,7 +674,7 @@ div#thank-you_message{
 #register-form div + div input[type=submit]{
 	cursor: pointer;
 	border-radius: 24px;
-	margin:1.75em auto 16px;
+	margin:2em auto 16px;
 	padding:0.5em 1em;
 	display: block;
 	background-color: #99EE20;
@@ -661,6 +692,50 @@ div#thank-you_message{
   box-shadow: 0 0 1pt 2pt #78C6FF;
 }
 #register-form div#message p{
-  line-height: 310px;
-  margin:0; padding:0;
+  line-height: 2em;
+  margin: -.5em 0 -1.5em;
+  color: #DD3131;
+}
+
+
+/*Login In form*/
+form#login-form{
+  position:absolute;
+  right:-20px;
+  top:64px;
+  z-index:11111;
+  background:#fff;
+  border:1px solid #ccc;
+  width:320px;
+  padding-bottom: 6px;
+}
+form#login-form input{
+  display: block;
+  margin:16px 16px;
+  width:90%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+form#login-form span#login-error,
+form#login-form span#username-error,
+form#login-form span#password-error{
+  text-align: center;
+  line-height: 30px;
+  position: relative;
+  margin:-10px 0 0;
+  display: block;
+  font-weight: bold;
+  color: #DD3131;
+  text-transform: none;
+}
+form#login-form span#username-error,
+form#login-form span#password-error{
+  line-height: 1;
+  margin:-10px 0;
+  font-size: 0.8em;
+  text-transform: none;
 }

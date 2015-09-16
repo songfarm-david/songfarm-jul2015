@@ -10,9 +10,8 @@
 	</style>
 </head>
 <body>
-	<h1>Authentication Test</h1>
 	<p>
-		Login or Sign Up
+		Log In or Sign Up
 	</p>
 	<ul>
 		<li>
@@ -31,7 +30,7 @@
 	</form>
 
 	<!-- Sign Up form -->
-	<form method="post" action="signUp.php" id="signUp-form" class="hidden">
+	<form method="post" action="signUpValidation.php" id="signUp-form" class="hidden">
 		<input type="text" name="artist_name" placeholder="Artist Name"><br>
 		<input type="email" name="artist_email" placeholder="What is your Email?"><br>
 		<input type="password" name="artist_password" placeholder="Choose a Password"><br>
