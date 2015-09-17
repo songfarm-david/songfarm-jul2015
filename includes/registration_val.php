@@ -75,8 +75,9 @@ if(isset($_POST['submit'])){
 			if(insert_user($user_data)) {
 				// success
 				// $messages[] = "Thanks for registering";
-				$_SESSION['id'] = last_inserted_id($db);
+				$_SESSION['user_id'] = last_inserted_id($db);
 				$_SESSION['username'] = $user_data['user_name'];
+				$_SESSION['permission'] = 0;
 				$_SESSION['logged_in'] = true;
 				// $messages[] = true;
 				// echo json_encode($messages);

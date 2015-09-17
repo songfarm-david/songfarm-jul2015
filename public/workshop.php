@@ -1,5 +1,6 @@
 <?php session_start();
 require_once('../includes/initialize.php');
+include_once('../includes/host_songcircle.php');
 $photo_errors = [];
 $php_upload_errors = array(
     0 => 'There is no error, the file uploaded with success',
@@ -12,13 +13,14 @@ $php_upload_errors = array(
     8 => 'A PHP extension stopped the file upload.',
 );
 ## For testing -
-// if(empty($_SESSION)){
-// 	$_SESSION['id'] = 1;
-// 	$_SESSION['username'] = 'Test User';
-// }
+if(empty($_SESSION)){
+	$_SESSION['user_id'] = 1000;
+	$_SESSION['username'] = 'Test User';
+  $_SESSION['permission'] = 1;
+}
 
-// if user is not logged in
-if(isset($_SESSION['logged_in']) !== true) {
+// if user is not logged in: isset($_SESSION['logged_in']) !== true
+if(!isset($_SESSION)) { // testing condition
 	redirect_to('index.php');
 } else {
 	// if user submits photo
@@ -45,7 +47,7 @@ if(isset($_SESSION['logged_in']) !== true) {
 			// target directory of file system
 			$target_dir = SITE_ROOT.DS."uploaded_images";
 			// specify attribute variables
-			$user_id 		= $_SESSION['id'];
+			$user_id 		= $_SESSION['user_id'];
 			$filename 	= uniqid('', true); // creates unique id
 			$type 			= str_replace('image/','.',$_FILES['file_upload']['type']);
 			$size 			= $_FILES['file_upload']['size'];
@@ -58,23 +60,27 @@ if(isset($_SESSION['logged_in']) !== true) {
 			$old_type = $res_array['type'];
 			if(has_rows($result) != 0){ // if a row exists
 				// try to delete the existing file from the file system, if fails...
-				if(!unlink($target_dir.DS.$old_filename.$old_type)){
-					 $photo_errors[] = "Could not delete existing file in file system. Update failed.";
-				} else {
-					$sql = "UPDATE user_photo ";
-					$sql.= "SET filename = '$filename', type = '$type', size = $size ";
-					$sql.= "WHERE user_id = $user_id";
-					if($result = query_db($sql)) {
-						if(!move_uploaded_file($tmp_name, "$target_dir/$filename$type")){
-							$photo_errors[] = "Error moving file to file system";
-						} else {
-							$image_name = $filename.$type;
-						}
-					} else {
-						$photo_errors[] = "There was an error updating your profile picture. Please try again at a later time.";
-						$image_name = "";
-					}
-				}
+        if(file_exists($target_dir.DS.$old_filename.$old_type)) {
+          if(!unlink($target_dir.DS.$old_filename.$old_type)){
+  					 $photo_errors[] = "Could not delete existing file in file system. Update failed.";
+  				} else {
+  					$sql = "UPDATE user_photo ";
+  					$sql.= "SET filename = '$filename', type = '$type', size = $size ";
+  					$sql.= "WHERE user_id = $user_id";
+  					if($result = query_db($sql)) {
+  						if(!move_uploaded_file($tmp_name, "$target_dir/$filename$type")){
+  							$photo_errors[] = "Error moving file to file system";
+  						} else {
+  							$image_name = $filename.$type;
+  						}
+  					} else {
+  						$photo_errors[] = "There was an error updating your profile picture. Please try again at a later time.";
+  						$image_name = "";
+  					}
+  				}
+        } else {
+          $image_name = "";
+        }// end of: if(file_exists);
 			} else {	// if no rows exist perform an insert
 				if(file_exists($target_dir.DS.$filename.$type)){
 					$photo_errors[] = "This photo has already been uploaded";
@@ -98,8 +104,8 @@ if(isset($_SESSION['logged_in']) !== true) {
 		} // end of: if no file upload errors
 	} else {
 		## retrieve user photo from file system
-		if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
-			$user_id = $_SESSION['id'];
+		if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+			$user_id = $_SESSION['user_id'];
 			$sql = "SELECT filename, type FROM user_photo WHERE ";
 			$sql.= "user_id = $user_id";
 			$result = query_db($sql);
@@ -109,7 +115,8 @@ if(isset($_SESSION['logged_in']) !== true) {
 				$type = str_replace('image/','',$res_array['type']);
 				$image_dir = SITE_ROOT.DS."uploaded_images".DS;
 				if(!file_exists($image_dir.$filename.$type)){
-					$photo_errors[] = 'We don\'t have a profile picture in our systems of you. You should upload one.';
+					// $photo_errors[] = 'We don\'t have a profile picture in our systems of you. You should upload one.';
+          $image_name = "";
 				} else {
 					$image_name = $filename.$type;
 				}
@@ -117,7 +124,7 @@ if(isset($_SESSION['logged_in']) !== true) {
 				$image_name = "";
 				// here you could assign a standard image prompting upload of a profile pic
 			}
-		} // end of: if(isset($_SESSION['id']) && !empty($_SESSION['id']))
+		} // end of: if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id']))
 	}
 }
 ?>
@@ -179,40 +186,47 @@ if(isset($_SESSION['logged_in']) !== true) {
 					<table>
 						<?php
 							# Populate tables here
+              $sql = "SELECT songcircle_id, date_of_songcircle, songcircle_name, songcircle_permission, participants, duration FROM songcircle";
+              if(!$result = mysqli_query($db, $sql)) {
+                echo mysqli_error($db);
+              } else {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                  echo "<input type=\"hidden\" data-conference-id=" .$row['songcircle_id']. "\">";
+                  echo "<td class=\"date\">" .$row['date_of_songcircle']. "</td>";
+                  echo "<td class=\"type\"><span class=\"permission\">".$row['songcircle_permission']."</span>&nbsp;".$row['songcircle_name'].
+                       "<span class=\"registered\"> (0 of " .$row['participants']. " participants registered)</span></td>";
+                  echo "<input type=\"hidden\" data-duration=" .$row['duration']. "\">";
+                  echo "<td class=\"register\"><input type=\"submit\" value=\"Register\" name=\"register\"></input></td>";
+                  echo "</tr>";
+                }
+              }
 
 						?>
 						<!-- Example Table -->
-						<tr>
+						<!-- <tr>
 							<td class="date">September 7th, 2015 - 07:00 GMT</td>
 							<td class="type">Open Songcircle <span class="registered"><a href="#">(<?php // dynamic count ?> Registered Members)</a></span></td>
 							<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 								<td class="register"><input type="submit" value="Register<?php // dynmaic status ?>" name="register"></input></td>
 								<input type="hidden" value="<?php // dynamic value ?>" name="songcircle_id">
-								<input type="hidden" value="<?php echo $_SESSION['id'] ?>" name="user_id">
+								<input type="hidden" value="<?php echo $_SESSION['user_id'] ?>" name="user_id">
 								<input type="hidden" value="<?php echo $_SESSION['username'] ?>" name="username">
 							</form>
-						</tr>
-						<tr>
-							<td class="date">September 14th, 2015 - 02:00 GMT</td>
-							<td class="type">Open Songcircle <span class="registered"><a href="#">(<?php // dynamic count ?> Registered Members)</a></span></td>
-							<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-								<td class="register"><input type="submit" value="Register<?php // dynmaic status ?>" name="register"></input></td>
-								<input type="hidden" value="<?php // dynamic value ?>" name="songcircle_id">
-								<input type="hidden" value="<?php echo $_SESSION['id'] ?>" name="user_id">
-								<input type="hidden" value="<?php echo $_SESSION['username'] ?>" name="username">
-							</form>
-						</tr>
+						</tr> -->
 
 					</table>
 				</div>
 				<aside class="aside-left">
 					<button>
-						Invite other Songwriters
+						<a href="#">Invite other Songwriters</a>
 					</button>
-					<button>
-						Host your own Songcircle
+          <?php if($_SESSION['permission'] != 1) {
+					  echo "<button class=\"inactive\"><a href=\"#\">Host a Songcircle</a>";
+          } else {
+            echo "<button id=\"host_songcircle\"><a href=\"#\">Host a Songcircle</a>";
+          }?>
 					</button>
-
 				</aside>
 			</article>
 
@@ -223,7 +237,56 @@ if(isset($_SESSION['logged_in']) !== true) {
 		</div><!-- end of tab container -->
 
 	</main>
+  <div id="overlay" class="hide"></div>
+  <form id="host_a_songcircle" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="hide">
+    <h1>Host a Songcircle</h1>
+    <p>
+      Name your Songcircle:
+    </p>
+    <input type="text" name="songcircle_name" maxlength="50" required><br>
+    <p>
+      Select a time and date: (all times are GMT)<!-- some sort of calculation to take into account where the user is located globally and reflecting and accurate transposition -->
+    </p>
+    <input type="datetime-local" name="date_of_songcircle" required>
+    <p>
+      Is your Songcircle Public (open to everyone) or Private (invite other Songwriters from your Songwriter's Circle)?
+    </p>
+    Public<input type="radio" name="songcircle_permission" value="Public" required></label>
+    Private<input type="radio" name="songcircle_permission" value="Private" required><!-- Private currently inactive-->
+    <p>
+      What is the maximum number of participants you'll allow?
+    </p>
+    <select name="max_participants" required>
+      <?php for ($i=2; $i <= 12 ; $i++) {
+        echo "<option value=\"{$i}\">{$i}</option>";
+      } ?>
+    </select>
+    <p>
+      Select a duration for your Songcircle:
+    </p>
+    <select name="duration" required>
+      <option value="30_minutes">30 minutes</option>
+      <option value="1_hour">1 hour</option>
+      <option value="1.5_hours">1.5 hours</option>
+      <option value="2_hours">2 hours</option>
+      <option value="3_hours">3 hours</option>
+    </select>
+    <br>
+    <br>
+    <input type="submit" name="submit">
+    <?php echo $message; ?>
+  </form>
 	<script>
+  // host songcircle overlay
+  $('#host_songcircle').on('click', function(){
+    console.log('click');
+    $('form#host_a_songcircle, div#overlay').fadeIn().removeClass('hide');
+  });
+  // hide form and overlay
+  $('#overlay').on('click', function(){
+    $('#overlay, form#host_a_songcircle').fadeOut().addClass('hide');
+  })
+
 	// script for tabbed panels
 	$('#tab-container ul').each(function(){
 

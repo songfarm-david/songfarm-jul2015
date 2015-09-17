@@ -27,8 +27,9 @@ if(isset($_POST['submit'])) {
 			$result = fetch_array($result);
 			// compare passwords
 			if(password_verify($password, $result['user_password'])) {
-				$_SESSION['id'] = $result['id'];
+				$_SESSION['user_id'] = $result['id'];
 				$_SESSION['username'] = $result['user_name'];
+				$_SESSION['permission'] = $result['permission'];
 				$_SESSION['logged_in'] = true;
 				$messages[] = true;
 				echo json_encode($messages);
