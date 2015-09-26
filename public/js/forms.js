@@ -81,9 +81,9 @@ $("#register-form").validate({
 			data: form_data,
 			dataType:'json',
 			success: function(data, textStatus, jqXHR){
-				console.log(data, textStatus, jqXHR);
+				// console.log(data, textStatus, jqXHR);
 				if($.inArray(true,data) != -1){
-					window.location.href = 'workshop.php';
+					window.location.href = 'workshop.php?id='+data[0];
 				} else {
 					$("#register-form div#message").append("<p>"+data+"</p>");
 					$("#register-form div#message").removeClass('hide');
@@ -115,14 +115,14 @@ $('#login').on('click', function(){
 
 $('#login-form').validate({
 	errorElement : 'span',
-	rules : {
-		username : 'required',
-		password : 'required'
-	},
-	messages : {
-		username : 'Please enter your Name or Email',
-		password : 'Please enter your Password'
-	},
+	// rules : {
+	// 	username : 'required',
+	// 	password : 'required'
+	// },
+	// messages : {
+	// 	username : 'Please enter your Name or Email',
+	// 	password : 'Please enter your Password'
+	// },
 	submitHandler: function(form){
 		// $('#submitLogIn').submit(function(e){
 		// 	e.preventDefault();
@@ -130,17 +130,26 @@ $('#login-form').validate({
 		var form 			= $('#login-form');
 		var formData 	= form.serialize();
 			$.ajax({
-				url 	: '../includes/login_val.php',
+				url 	: '../includes/login.php',
 				type 	: 'POST',
 				data 	: formData,
-				dataType : 'JSON',
 				success:function(data, textStatus, jqXHR){
-					console.log(data);
-					if($.inArray(true,data) !== -1){
-						window.location.href = 'workshop.php';
+					// successful login returns false
+					if(data == false){
+						window.location.href = 'workshop.php'
 					} else {
 						$('span#login-error').html(data);
 					}
+					// console.log(data);
+					// console.log(jqXHR);
+					// if($.inArray(true, data) != -1){
+					// 	console.log('ready to redirect');
+					// 	// window.location.href = 'workshop.php';
+					// } else {
+					// 	console.log('display error');
+					// 	console.log(data);
+					// 	//
+					// }
 				} // success
 			}) // ajax
 	} // submit handler

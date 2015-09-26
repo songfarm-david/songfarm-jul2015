@@ -1,8 +1,8 @@
-<?php session_start();
-require_once('initialize.php');
+<?php require_once('initialize.php');
 $errors = [];
 $user_data = [];
 if(isset($_POST['submit'])){
+	// $login = new validateLogin;
 	// get the value of user_type
 	$user_type = (int)$_POST["user_type"];
 	// assign user_type to user_data array..
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
 	// check for the presence of an email
 	if(has_presence($_POST['user_email'])) {
     // make sure email is valid
-    if(is_valid_email($_POST['user_email'])) {
+    if($db->is_valid_email($_POST['user_email'])) {
       // assign clean, valid 'email' variable
       $user_email = htmlspecialchars($_POST['user_email']);
 			$user_data['user_email'] = $user_email;
@@ -67,36 +67,35 @@ if(isset($_POST['submit'])){
 	// if no errors, proceed to database
 	if(empty($errors)){
 		// check if email is unique
-		if(has_rows(unique_email($user_email))) {
+		if($db->has_rows($db->unique_email($user_email))) {
 			$messages[] = "That email address has already been registered.";
 			echo json_encode($messages);
 		} else {
 			// insert user into the database
-			if(insert_user($user_data)) {
+			if($db->insert_user($user_data)) {
 				// success
-				// $messages[] = "Thanks for registering";
-				$_SESSION['user_id'] = last_inserted_id($db);
+				$_SESSION['user_id'] = $db->last_inserted_id();
 				$_SESSION['username'] = $user_data['user_name'];
 				$_SESSION['permission'] = 0;
 				$_SESSION['logged_in'] = true;
-				// $messages[] = true;
-				// echo json_encode($messages);
+				$messages[] = $_SESSION['user_id'];
+				$messages[] = "Thanks for registering. Redirecting...";
+				$messages[] = true;
+				echo json_encode($messages);
 
 				// NOTE: Send Registration Email
-				$to = $user_email;
-				$subject = "Thanks for Registering, {$user_name}!";
-				$from = "Songfarm"; // not a valid email here..probably needs to be
-				$message = // <<<< special html block >>>>
-
-				$headers = "From: {$from}\r\n"; // need an email here
-				$headers.= "Reply-to: {$email}\r\n"; // songfarm email
-				$headers.= "Bcc: David Gaskin <davidburkegaskin@gmail.com>\r\n";
-				$headers.= "MIME-Version: 1.0\r\n";
-				$headers.= "Content-Type: text/plain; charset=utf-8";
-				$result = mail($to, $subject, $message, $headers, '-fsongfarm'); // 5th arg. possible bug
-				if(!$result){
-					return false; // error log the message
-				}
+				// $to = $user_email;
+				// $subject = "Thanks for Registering, {$user_name}!";
+				// $from = "Songfarm <david@songfarm.ca>";
+				// $message = "Welcome to the Songfarm community!";
+				// $headers = "From: {$from}\r\n";
+				// $headers.= "Reply-to: david@songfarm.ca\r\n";
+				// $headers.= "MIME-Version: 1.0\r\n";
+				// $headers.= "Content-Type: text/plain; charset=utf-8";
+				// $result = mail($to, $subject, $message, $headers, '-fdavid@songfarm.ca'); // , '-fsongfarm' 5th arg. possible bug
+				// if(!$result){
+				// 	return false; // error log the message
+				// }
 			} else {
 				// failure
 				$messages[] = "There was an error inserting into the database.";

@@ -18,7 +18,7 @@
 				<a href="index.php#features" title="Songfarm features" rel="bookmark">Features</a>
 			</li>
 			<li>
-				<a href="songcircle.php" title="Songcircle - A virtual songwriter's circle"><strong>Songcircle</strong></a><!-- Emphasize Songcircle -->
+				<a href="songcircle.php" title="Songcircle - A virtual songwriter's circle"><strong>Songcircle</strong></a>
 			</li>
 			<li>
 				<a href="index.php#contactUs" title="Contact Us" rel="bookmark">Contact Us</a>

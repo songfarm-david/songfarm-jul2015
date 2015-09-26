@@ -1,5 +1,15 @@
-<?php session_start(); ?>
-<?php require_once("../includes/initialize.php"); ?>
+<?php require_once("../includes/initialize.php");
+
+$login = new validateLogin();
+
+if(isset($_POST['submit'])) {
+	$username = $login->username;
+	$login->validateUser($_POST['username'],$_POST['password']);
+} else {
+	$username = "";
+}
+
+?>
 <!doctype html>
 <html lang="en">
     <head>

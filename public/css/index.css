@@ -739,6 +739,8 @@ form#login-form span#password-error{
   color: #DD3131;
   text-transform: none;
 }
+form#login-form span#login-error{ padding: 0 12px; }
+
 form#login-form span#username-error,
 form#login-form span#password-error{
   line-height: 1;
