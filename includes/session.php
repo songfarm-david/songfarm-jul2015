@@ -42,6 +42,7 @@ class Session{
 			unset($_SESSION['user_id']);
 			unset($_SESSION['username']);
 			unset($_SESSION['permission']);
+			unset($_SESSION['message']);
 			unset($this->user_id);
 			unset($this->username);
 			unset($this->permission);

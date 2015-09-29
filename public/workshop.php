@@ -1,33 +1,33 @@
 <?php require_once('../includes/initialize.php');
 if(!$session->is_logged_in()) { redirect_to('index.php'); }
 $songcircle = new songcircle;
+
+if(isset($_POST['submitCountryCode'])){
+	$user->insert_timezone($session->user_id, $_POST['timezone']);
+}
+
+
+if($session->user_id == 1){
+	$songcircle->timezone = "America/Toronto";
+} elseif($session->user_id == 0){
+	$songcircle->timezone = "America/Vancouver";
+}
+
 if(isset($_POST['register'])){
-	$songcircle->register($_POST['songcircle_id'], $session->user_id, $session->username, $_POST['songcircle_name']);
+	$songcircle->register($_POST['songcircle_id'], $session->user_id, $session->username, $_POST['songcircle_name'], $_POST['date_of_songcircle']);
 } elseif(isset($_POST['unregister'])){
-	$songcircle->unregister($_POST['songcircle_id'], $session->user_id);
+	$songcircle->unregister($_POST['songcircle_id'], $session->user_id, $_POST['songcircle_name'], $_POST['date_of_songcircle']);
+}
+// if user creates a songcircle
+if(isset($_POST['submit'])){
+	$songcircle->create_songcircle($session->user_id);
 }
 $songcircle->open_songcircle_exists();
-
-// if(isset($_POST['submit'])) {
-// 	$songcircle->create_songcircle();
-// }
-/* codeblock to register for a songcircle */
-
-
-
-
-
-// $dt = new DateTime();
-// $current = $dt->format('Y-m-d');
-// echo $current . "<br>";
-// $later = $dt->add('%d');
-// echo $later;
-
-// $date=date_create("2015-09-27T3:00 PM");
-// // echo $date . "<br>";
-// date_add($date,date_interval_create_from_date_string("7 days"));
-// $later_date = date_format($date,"Y-m-d");
-// echo $later_date;
+if(!isset($_SESSION['message'])){
+	echo $songcircle->message;
+} else {
+	echo $_SESSION['message'];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -73,7 +73,8 @@ $songcircle->open_songcircle_exists();
 		<span class="profile"><a href="profile.php?id=<?php echo $session->user_id; ?>">Visit your profile page</a></span>
 	</header>
 	<main>
-		<!-- <aside class="aside-left">
+
+		<aside class="aside-left">
 			<button>
 				<a href="#">Invite other Songwriters</a>
 			</button>
@@ -83,20 +84,60 @@ $songcircle->open_songcircle_exists();
 				echo "<button id=\"host_songcircle\"><a href=\"#\">Host a Songcircle</a>";
 			}?>
 			</button>
-		</aside> -->
+		</aside>
 		<div id="tab-container">
 			<ul>
 				<li class="tab"><a href="#tab-songbook">Songbook</a></li><li class="tab"><a href="#tab-songcircle">Songcircle</a></li><li class="tab"><a href="#tab-liveConcert">Live Concert</a></li>
 			</ul>
+			<?php echo $songcircle->message; ?>
 
 			<article id="tab-songbook" class="tab-content">
-				<h3>Songbook</h3><?php if($songcircle->message){ echo $songcircle->message; } ?>
+				<h3>Songbook</h3><?php echo $songcircle->message; ?>
 			</article>
 
 			<article id="tab-songcircle" class="tab-content">
 				<div>
 					<h3>Upcoming Songcircles:</h3>
-          	<?php $songcircle->display_songcircles(); ?>
+          	<?php // if user timezone is not currently set, prompt them to set it.
+						if($user->has_timezone($session->user_id)) {
+							$songcircle->timezone = $user->timezone;
+							$songcircle->display_songcircles();
+						} else {
+							if(!empty($countryName)){ ?>
+							<h1>Timezone based on <?php echo $countryName ?></h1>
+							<?php } ?>
+
+							<p>Select your Country from the list to find your timezone</p>
+							<form id="countryCode" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+								<select id="countries" name="countries">
+								<?php if(isset($country_code) && !empty($countryName)){ ?>
+									<option value="<?php echo $country_code ?>"><?php echo $countryName; ?></option>
+								<?php }
+
+								$continents = [];
+								foreach ($countries as $country) {
+									$continents[] = $country['continent'];
+									$continents = array_unique($continents);
+								}
+								foreach($continents as $key => $continent){
+									echo "<optgroup label=\"{$continent}\"></optgroup>";
+									foreach ($countries as $key => $value) {
+										if($value['continent'] == $continent){
+											echo "<option value=\"$key\">". $value['country'] ."</option>";
+										}
+									}
+								}
+								?>
+							</select>
+
+							<input id="country-code" value="<?php echo $country_code; ?>" type="hidden">
+
+							<select id="timezones" name="timezone">
+							<?php	//echo timezones_from_countryCode($country_code); ?>
+							</select>
+							<input type="submit" name="submitCountryCode" value="Submit">
+							</form>
+					<?php	} ?>
 				</div>
 
 			</article>
@@ -111,8 +152,8 @@ $songcircle->open_songcircle_exists();
 
 
 
-  <!-- <div id="overlay" class="hide"></div> -->
-  <form id="host_a_songcircle" action="<?php //echo $_SERVER['PHP_SELF'].'?id='.$user_id ?>" method="post" class="hide">
+  <div id="overlay" class="hide"></div>
+  <form id="host_a_songcircle" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="hide">
     <h1>Host a Songcircle</h1>
     <p>
       Name your Songcircle:
@@ -135,19 +176,9 @@ $songcircle->open_songcircle_exists();
         echo "<option value=\"{$i}\">{$i}</option>";
       } ?>
     </select>
-    <!-- <p>
-      Select a duration for your Songcircle:
-    </p>
-    <select name="duration" required>
-      <option value="30_minutes">30 minutes</option>
-      <option value="1_hour">1 hour</option>
-      <option value="1.5_hours">1.5 hours</option>
-      <option value="2_hours">2 hours</option>
-      <option value="3_hours">3 hours</option>
-    </select> -->
     <br>
     <br>
-    <input type="submit" name="submit">
+    <input type="submit" name="submit" value="Create">
     <?php //echo $message; ?>
   </form>
 	<script>
@@ -195,6 +226,30 @@ $songcircle->open_songcircle_exists();
 		$('#upload_user_image').fadeIn('fast').removeClass('hide');
 	})
 	</script>
-
+	<script>
+	// country code
+	$(document).ready(function(){
+		var initialCountryCode = $('#country-code').val();
+		$.ajax({
+			method : "POST",
+			url	: "../includes/timezonesFromCountryCode.php",
+			data : {'country_code':initialCountryCode},
+			success: function(data){
+				$('#timezones').html(data);
+			}
+		});
+		$('#countries').on('change',function(){
+			var countryCode = $(this).val(); // this gets the country code
+			$.ajax({
+				method : "POST",
+				url	: "../includes/timezonesFromCountryCode.php",
+				data : {'country_code':countryCode},
+				success: function(data){
+					$('#timezones').html(data);
+				}
+			});
+		});
+	});
+	</script>
 </body>
 </html>
